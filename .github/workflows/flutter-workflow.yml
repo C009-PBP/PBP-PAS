@@ -40,14 +40,14 @@ jobs:
       # - name: Analyze
       #   run: flutter analyze
               
-      - name: Generate Java keystore
-        env: 
-          KEY_JKS: ${{ secrets.KEY_JKS }}
-        run: echo "$KEY_JKS" | base64 --decode > upload-keystore.jks 
+      # - name: Generate Java keystore
+      #   env: 
+      #     # KEY_JKS: ${{ secrets.KEY_JKS }}
+      #   run: echo "$KEY_JKS" | base64 --decode > upload-keystore.jks 
               
       - name: Build APK
         env:
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.TOKEN }}
         run: flutter build apk --split-per-abi
 
       - name: Get current date
@@ -61,7 +61,7 @@ jobs:
           artifacts: "build/app/outputs/flutter-apk/*.apk"
           body: "Published at ${{ steps.date.outputs.date }}"
           name: "v${{ steps.version.outputs.version }}"
-          token: ${{ secrets.GH_TOKEN }}
+          # token: ${{ secrets.GH_TOKEN }}
           tag: ${{ steps.version.outputs.version }}
 
 
