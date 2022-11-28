@@ -26,7 +26,7 @@ Pada halaman pengaturan akun HealthBud, user dapat melengkapi data diri dan mela
 
 - Jadwal praktek dokter + review dokter (Reza)
 
-Salah satu tujuan dari aplikasi HealthBud ialah untuk mempermudah user mencari jadwal praktek dokter. Jadwal tersebut berisi nama dokter, hari dan jam dokter tersebut. Selain itu, user juga dapat mengirimkan review terhadap dokter dan ditampilkan pada page review dokter.
+Salah satu tujuan dari aplikasi HealthBud ialah untuk mempermudah user mencari jadwal praktek dokter. Jadwal tersebut berisi nama dokter, hari dan jam dokter praktik dokter. Selain itu, user juga dapat mengirimkan review terhadap dokter, dimana review tersebut akan ditampilkan pada page review dokter.
  
 - Tanya Dokter (Safa)
  
