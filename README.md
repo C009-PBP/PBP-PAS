@@ -4,6 +4,7 @@
 * Najmi Anasya Calyla - 2106639825
 * Reza Taufiq Yahya - 2106654183
 * Shafa Trivia Ezananda - 2206026971
+
  
 ## Tautan aplikasi Heroku: https://health-bud.herokuapp.com/
 ## Tautan aplikasi Railway: https://health-bud.up.railway.app/
@@ -56,7 +57,7 @@ Untuk dokter, login juga perlu dilakukan terlebih dahulu. Setelah berhasil masuk
  
 ## Alur pengintegrasian dengan web service untuk terhubung dengan aplikasi web yang sudah dibuat saat Proyek Tengah Semester:
 1. Menambahkan dependensi HTTP
-2. Membuat models dari data
+2. Membuat models dari data (opsional)
 3. Melakukan pengambilan data JSON dari aplikasi web menggunakan http.get
 4. Mengkonversi data yang telah diambil ke dalam bentuk models dengan manual serializations menggunakan built in JSON decoder
 5. Widget berdasarkan snapshot terbaru dari interaksi dengan Future akan dibuat oleh FutureBuilder
