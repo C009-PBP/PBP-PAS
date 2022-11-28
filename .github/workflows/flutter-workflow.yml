@@ -4,6 +4,9 @@ name: Flutter CI
 
 on:
   push:
+    tags : 
+        - v*
+        
     branches:
     - main
 
