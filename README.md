@@ -4,7 +4,6 @@
 * Najmi Anasya Calyla - 2106639825
 * Reza Taufiq Yahya - 2106654183
 * Shafa Trivia Ezananda - 2206026971
-
  
 ## Tautan aplikasi Heroku: https://health-bud.herokuapp.com/
 ## Tautan aplikasi Railway: https://health-bud.up.railway.app/
@@ -37,11 +36,10 @@ Berikut tata caranya :
 3. Apabila pertanyaanmu telah terverifikasi, tunggu dokter yang ahli pada bidang yang kamu pilih untuk menjawab pertanyaanmu. </br>
 4. Setelah pertanyaanmu terjawab oleh dokter, pertanyaanmu akan berada pada halaman utama forum. </br>
  
-Di dalam aplikasi ini, Implementasi AJAX dilakukan untuk mengambil input *form* berisi judul dan isi pertanyaan serta memuat pertanyaan dari user beserta jawaban dari dokter pada forum secara asinkronus.
  
  
-## Daftar modul yang akan diimplementasikan:
-* Authentication (untuk membedakan jenis user, melakukan register, dan login) –> Dhito
+## Daftar modul/aplikasi yang akan diimplementasikan:
+* Authentication (untuk membedakan jenis user, melakukan register, dan login) 
 * Form pendaftaran client/pengaturan akun (riwayat kesehatan, dll) –> Nasya
 * Kalkulator BMI –> Dhito
 * Jadwal praktek dokter + review dokter –> Reza
@@ -57,7 +55,7 @@ Untuk dokter, login juga perlu dilakukan terlebih dahulu. Setelah berhasil masuk
  
 ## Alur pengintegrasian dengan web service untuk terhubung dengan aplikasi web yang sudah dibuat saat Proyek Tengah Semester:
 1. Menambahkan dependensi HTTP
-2. Membuat models dari data (opsional)
+2. Membuat models dari data
 3. Melakukan pengambilan data JSON dari aplikasi web menggunakan http.get
 4. Mengkonversi data yang telah diambil ke dalam bentuk models dengan manual serializations menggunakan built in JSON decoder
 5. Widget berdasarkan snapshot terbaru dari interaksi dengan Future akan dibuat oleh FutureBuilder
