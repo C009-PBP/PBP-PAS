@@ -25,6 +25,7 @@ Untuk membantu user dalam memantau kesehatannya secara mandiri, Health-Bud menye
 Pada halaman pengaturan akun HealthBud, user dapat melengkapi data diri dan melakukan pengaturan akun miliknya. Fitur lain pada halaman ini adalah form riwayat kesehatan digital yang dapat diisi oleh user. Di halaman ini, akan disediakan form untuk mengisi informasi-informasi terkait kondisi kesehatan user. Setelah disimpan, data dapat diakses oleh user dan ditunjukkan saat berkonsultasi dengan dokter. Tujuan dari penyimpanan riwayat kesehatan digital adalah agar HealthBud dapat memudahkan user dalam menyimpan dan mengelola dokumen-dokumen atau informasi-informasi yang terkait dengan kondisi kesehatannya dengan aman. Fitur melihat dan memperbarui informasi pada profil dan pengaturan riwayat kesehatan hanya dapat diakses oleh pengguna yang sudah mendaftarkan akun dan login. 
 
 - Jadwal praktek dokter + review dokter (Reza)
+
 Salah satu tujuan dari aplikasi HealthBud ialah untuk mempermudah user mencari jadwal praktek dokter. Jadwal tersebut berisi nama dokter, hari dan jam dokter tersebut. Selain itu, user juga dapat mengirimkan review terhadap dokter dan ditampilkan pada page review dokter.
  
 - Tanya Dokter (Safa)
