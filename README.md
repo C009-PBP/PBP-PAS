@@ -59,4 +59,4 @@ Untuk dokter, login juga perlu dilakukan terlebih dahulu. Setelah berhasil masuk
 2. Membuat models dari data
 3. Melakukan pengambilan data JSON dari aplikasi web menggunakan http.get
 4. Mengkonversi data yang telah diambil ke dalam bentuk models dengan manual serializations menggunakan built in JSON decoder
-5. Widget berdasarkan snapshot terbaru dari interaksi dengan Future akan dibuat oleh FutureBuilder
+5. Widget berdasarkan snapshot terbaru dari interaksi dengan Future akan dibuat oleh FutureBuilder (lebih tepatnya oleh atribut builder pada widget FutureBuilder)
