@@ -4,6 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:healthbud/page/authentication/LoginPage.dart';
 
+import 'package:healthbud/tools/drawer.dart';
+
+
 void main() {
   runApp(const MyApp());
 }
@@ -78,6 +81,9 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
+
+      drawer: DrawerClass(parentScreen: ScreenName.Home),
+
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
