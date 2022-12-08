@@ -1,10 +1,13 @@
+import 'dart:convert';
+
+import 'package:healthbud/main.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 import 'package:healthbud/tools/drawer.dart';
-
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -24,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
 
   String username = "";
   String password1 = "";
-  
+
   @override
   Widget build(BuildContext context) {
     final request = context.watch<CookieRequest>();
@@ -32,12 +35,11 @@ class _LoginPageState extends State<LoginPage> {
 
     // TODO : Create login page
     return Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
         title: Text('Login'),
       ),
-
       drawer: DrawerClass(parentScreen: ScreenName.Login),
-body: Form(
+      body: Form(
         key: _loginFormKey,
         child: SingleChildScrollView(
           child: Container(
@@ -127,7 +129,46 @@ body: Form(
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
+                    // 'username' and 'password' should be the values of the user login form.
+                    var response = {};
+                    try {
+                        response = await request
+                          .login("http://localhost:8000/auth/login/", {
+                        'username': username,
+                        'password': password1,
+                      });
+
+                      // print(response);
+                      // print("OI");
+                    } catch (err) {
+                      //dapet error message, bukan data-object
+                      // print("HMM");
+                    }
+
+                    print(response);
+
+                    if (response['status'] == 'true') {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("Successfully logged in!"),
+                      ));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text("An error occured, please try again."),
+                      ));
+                    }
+
+                    if (!mounted) return;
+
+                    if (request.loggedIn) {
+                      // Code here will run if the login succeeded.
+                      // print("BERHASIL LOGIN");
+                      print(request);
+                    } else {
+                      // print("GA BERHASIL LOGIN");
+
+                      // Code here will run if the login failed (wrong username/password).
+                    }
                     if (_loginFormKey.currentState!.validate()) {
                       // List listBudget = [];
                       // listBudget.add(_namaLengkap);
@@ -174,7 +215,6 @@ body: Form(
           ),
         ),
       ),
-
     );
   }
 }
