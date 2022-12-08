@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 import 'package:healthbud/main.dart';
 
@@ -8,6 +9,8 @@ import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 import 'package:healthbud/tools/drawer.dart';
+
+var request;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -30,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    final request = context.watch<CookieRequest>();
+    request = context.watch<CookieRequest>();
     // The rest of your widgets are down below
 
     // TODO : Create login page
@@ -133,28 +136,36 @@ class _LoginPageState extends State<LoginPage> {
                     // 'username' and 'password' should be the values of the user login form.
                     var response = {};
                     try {
-                        response = await request
+                      response = await request
                           .login("http://localhost:8000/auth/login/", {
                         'username': username,
                         'password': password1,
                       });
+
+                      // http
+                      //     .post("http://localhost:8000/authentication/login/", {}, {
+                      //   'username': username,
+                      //   'password': password1,
+                      // });
 
                       // print(response);
                       // print("OI");
                     } catch (err) {
                       //dapet error message, bukan data-object
                       // print("HMM");
+                      response['status'] = false;
                     }
 
                     print(response);
 
-                    if (response['status'] == 'true') {
+                    if (response['status']) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Successfully logged in!"),
+                        content: Text("Login berhasil!"),
                       ));
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("An error occured, please try again."),
+                        content: Text(
+                            "Login gagal. Periksa username dan passwordmu!"),
                       ));
                     }
 

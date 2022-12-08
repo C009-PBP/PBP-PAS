@@ -11,12 +11,15 @@ import 'package:flutter/material.dart';
 import 'package:healthbud/model/bmi.dart';
 
 import 'package:healthbud/main.dart';
+import 'package:healthbud/page/authentication/LoginPage.dart';
 
 import 'dart:convert';
 
 import 'package:healthbud/tools/fetcherBMI.dart';
 
 import 'package:healthbud/tools/drawer.dart';
+
+
 
 class BMIPage extends StatefulWidget {
   const BMIPage({Key? key}) : super(key: key);
@@ -28,6 +31,7 @@ class BMIPage extends StatefulWidget {
 class _BMIPageState extends State<BMIPage> {
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         appBar: AppBar(
           title: const Text('Kalkulator BMI'),
@@ -54,7 +58,7 @@ class _BMIPageState extends State<BMIPage> {
                   return ListView.builder(
                       itemCount: snapshot.data!.length,
                       itemBuilder: (_, index) => ListTile(
-                            title: Text("${snapshot.data![index].title}"),
+                            title: Text("${snapshot.data![index]}"),
                             onTap: () {
                               Navigator.push(
                                 context,
