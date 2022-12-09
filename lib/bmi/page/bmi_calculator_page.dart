@@ -3,21 +3,21 @@
 //FUNGSIONALITAS: ?
 //DESIGN: BELUM
 
-import 'package:healthbud/page/bmi_detail.dart';
+import 'package:healthbud/bmi/page/bmi_detail.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/material.dart';
 
-import 'package:healthbud/model/bmi.dart';
+import 'package:healthbud/bmi/model/bmi.dart';
 
 import 'package:healthbud/main.dart';
-import 'package:healthbud/page/authentication/LoginPage.dart';
+import 'package:healthbud/authentication/page/LoginPage.dart';
 
 import 'dart:convert';
 
-import 'package:healthbud/tools/fetcherBMI.dart';
+import 'package:healthbud/bmi/tools/fetcherBMI.dart';
 
-import 'package:healthbud/tools/drawer.dart';
+import 'package:healthbud/core/tools/drawer.dart';
 
 
 
