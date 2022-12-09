@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
-import 'package:healthbud/page/authentication/LoginPage.dart';
+import 'package:healthbud/authentication/page/LoginPage.dart';
 
-import 'package:healthbud/tools/drawer.dart';
+import 'package:healthbud/core/tools/drawer.dart';
 
 
 void main() {

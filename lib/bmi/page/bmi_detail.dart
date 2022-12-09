@@ -3,13 +3,13 @@
 
 import 'package:flutter/material.dart';
 
-import 'package:healthbud/page/bmi_calculator_page.dart';
+import 'package:healthbud/bmi/page/bmi_calculator_page.dart';
 
-import 'package:healthbud/model/bmi.dart';
+import 'package:healthbud/bmi/model/bmi.dart';
 
 import 'package:healthbud/main.dart';
 
-import 'package:healthbud/tools/drawer.dart';
+import 'package:healthbud/core/tools/drawer.dart';
 
 class BMIDetail extends StatelessWidget {
   // In the constructor, require a Todo.
