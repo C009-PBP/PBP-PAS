@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:healthbud/page/authentication/LoginPage.dart';
-import 'package:healthbud/page/bmi_calculator_page.dart';
+import 'package:healthbud/authentication/page/LoginPage.dart';
+import 'package:healthbud/bmi/page/bmi_calculator_page.dart';
 
 import 'package:healthbud/main.dart';
 
