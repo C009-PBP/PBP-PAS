@@ -1,6 +1,7 @@
 //TODO: BUAT FETCHER JSON BMI
 //STATUS: (MUNGKIN) UDAH
 import 'package:flutter/material.dart';
+import 'package:healthbud/core/tools/loggedInUser.dart';
 
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -18,14 +19,8 @@ class fetcherBMI {
   fetcherBMI();
 
   Future<List<BMI>> fetchBMI() async {
-    var response1;
-    try {
-      response1 = await request.get("https://health-bud.up.railway.app/auth/user-data");
-      print(response1);
-    } catch (e) {
-      print("ERROr");
-    }
-    final user_pk = response1['pk'];
+
+    final user_pk = loggedInUser!.pk;
     var url = Uri.parse('https://health-bud.up.railway.app/bmi_calculator/json-flutter/${user_pk}');
 
     var response;
@@ -37,14 +32,12 @@ class fetcherBMI {
           "Content-Type": "application/json",
         },
       );
-      print("GGGGGGGGG");
-      print("ASOIPDJOSKAD");
       // print((utf8.decode(response.bodyBytes)));
     } catch (err) {
       print("axz");
     }
 
-    print("O");
+    // print("O");
     // melakukan decode response menjadi bentuk json
     // print(json.encode(response)); --> error
     var data;
@@ -53,7 +46,7 @@ class fetcherBMI {
     } catch (e) {
       print("askodaod");
     }
-    print(data);
+    // print(data);
 
     // melakukan konversi data json menjadi object MyWatchList
     List<BMI> listBMI = [];

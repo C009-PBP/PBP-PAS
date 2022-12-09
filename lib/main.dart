@@ -6,6 +6,8 @@ import 'package:healthbud/authentication/page/LoginPage.dart';
 
 import 'package:healthbud/core/tools/drawer.dart';
 
+import 'package:healthbud/authentication/model/user.dart';
+
 
 void main() {
   runApp(const MyApp());
