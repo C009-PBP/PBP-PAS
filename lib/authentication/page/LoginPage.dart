@@ -11,6 +11,9 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:healthbud/core/tools/drawer.dart';
 import 'package:healthbud/authentication/model/user.dart';
 
+import 'package:healthbud/core/tools/loggedInUser.dart';
+
+
 var request;
 
 class LoginPage extends StatefulWidget {
@@ -138,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                     var response = {};
                     try {
                       response = await request.login(
-                        "https://health-bud.up.railway.app/auth/login/", {
+                          "https://health-bud.up.railway.app/auth/login/", {
                         'username': username,
                         'password': password1,
                       });
@@ -153,40 +156,48 @@ class _LoginPageState extends State<LoginPage> {
 
                     print(response);
 
-                    if (response['status']) {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Login berhasil!"),
-                      ));
-                    } else {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text(
-                            "Login gagal. Periksa username dan passwordmu!"),
-                      ));
-                    }
-
                     if (!mounted) return;
 
                     if (request.loggedIn) {
                       // Code here will run if the login succeeded.
                       // print("BERHASIL LOGIN");
                       // print(request);
-                      var response1;
+                      var response_get_user;
                       try {
-                        response1 = await request.get(
+                        response_get_user = await request.get(
                             "https://health-bud.up.railway.app/auth/user-data");
-                        print(response1);
+                        // print("============");
+                        print(response_get_user);
                       } catch (e) {
                         print("ERROr");
                       }
 
-                      var data;
-                      try {
-                        data = jsonDecode(utf8.decode(response1.bodyBytes));
-                      } catch (e) {
-                        print("askodaod");
+                      // var data;
+                      // try {
+                      //   data = jsonDecode(utf8.decode(response1.bodyBytes));
+                      // } catch (e) {
+                      //   print("askodaod");
+                      // }
+
+                      loggedInUser = User.fromJson(response_get_user);
+
+                      print(loggedInUser!.username);
+
+                      if (response['status']) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("Login berhasil, selamat datang " +
+                              loggedInUser!.role +
+                              " " +
+                              loggedInUser!.username +
+                              "!"),
+                        ));
+                      } else {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(const SnackBar(
+                          content: Text(
+                              "Login gagal. Periksa username dan passwordmu!"),
+                        ));
                       }
-                      User loggedInUser = User.fromJson(data);
-                      print(loggedInUser);
                     } else {
                       // print("GA BERHASIL LOGIN");
 
@@ -214,8 +225,8 @@ class _LoginPageState extends State<LoginPage> {
                                 shrinkWrap: true,
                                 children: <Widget>[
                                   Center(
-                                      child: const Text(
-                                          'Data berhasil dimasukkan!')),
+                                      child:
+                                          const Text('Data berhasil masuk!')),
                                   SizedBox(height: 20),
                                   // TODO: Munculkan informasi yang didapat dari form
                                   TextButton(
