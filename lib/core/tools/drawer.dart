@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:healthbud/authentication/page/LoginPage.dart';
 import 'package:healthbud/bmi/page/bmi_calculator_page.dart';
+import 'package:healthbud/bmi/page/bmi_calculator_center.dart';
 
 import 'package:healthbud/main.dart';
+
+import 'package:healthbud/core/tools/loggedInUser.dart';
 
 //source:   https://stackoverflow.com/questions/66925164/refactoring-dart-code-into-a-separate-file
 enum ScreenName {
@@ -11,6 +14,7 @@ enum ScreenName {
   Home,
   BMI,
   BMI_Detail,
+  BMICalculatorPage,
 }
 
 class DrawerClass extends StatefulWidget {
@@ -40,28 +44,91 @@ class _DrawerClassState extends State<DrawerClass> {
               );
             },
           ),
-          ListTile(
-            title: const Text('Login'),
-            onTap: () {
-              // Route menu ke halaman form
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginPage()),
-              );
-            },
-          ),
+          loggedInUser != null
+              ? ListTile(
+                  title: const Text('Logout'),
+                  onTap: () async {
+                    // Route menu ke halaman form
+                    var url = Uri.parse(
+                        'https://health-bud.up.railway.app/auth/logout/');
+
+                    var response;
+                    try {
+                      response = await request.logout(
+                          "https://health-bud.up.railway.app/auth/logout/");
+                      // print((utf8.decode(response.bodyBytes)));
+                      print(response);
+                      loggedInUser = null;
+                    } catch (err) {
+                      print("axz");
+                    }
+                    print(response);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const MyHomePage(title: 'HealthBud')),
+                    );
+                  },
+                )
+              : ListTile(
+                  title: const Text('Login'),
+                  onTap: () {
+                    // Route menu ke halaman form
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginPage()),
+                    );
+                  },
+                ),
 
           ListTile(
             title: const Text('Kalkulator BMI'),
             onTap: () {
-              // Route menu ke halaman form
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => BMIPage()),
-              );
+              if (loggedInUser != null) {
+                if (loggedInUser!.role == 'pasien') {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const BMIPage()),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text(
+                        "Maaf, Anda harus terdaftar sebagai pasien untuk mengakses aplikasi ini."),
+                  ));
+                }
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text(
+                      "Maaf, Anda harus terdaftar sebagai pasien untuk mengakses aplikasi ini."),
+                ));
+              }
             },
           ),
 
+          ListTile(
+            title: const Text('Kalkulator BMI Test'),
+            onTap: () {
+              // Route menu ke halaman form
+              if (loggedInUser != null) {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const BMI_Center()),
+                );
+              } else {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const BMIPage()),
+                );
+              }
+
+              // Navigator.pushReplacement(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => BMI_Center()),
+              // );
+            },
+          ),
         ],
       ),
     );

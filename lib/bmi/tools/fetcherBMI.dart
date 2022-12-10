@@ -19,7 +19,7 @@ class fetcherBMI {
   fetcherBMI();
 
   Future<List<BMI>> fetchBMI() async {
-
+    
     final user_pk = loggedInUser!.pk;
     var url = Uri.parse('https://health-bud.up.railway.app/bmi_calculator/json-flutter/${user_pk}');
 
