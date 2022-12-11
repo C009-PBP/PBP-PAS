@@ -2,6 +2,7 @@
 //STATUS: (MUNGKIN) UDAH
 
 import 'package:flutter/material.dart';
+import 'package:healthbud/authentication/page/LoginPage.dart';
 
 import 'package:healthbud/bmi/page/bmi_calculator_page.dart';
 
@@ -32,14 +33,13 @@ class BMIDetail extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: Text(
+                child: Text(
               "User : ${bmi_obj.user}",
               style: const TextStyle(
                 fontSize: 30.0,
                 fontWeight: FontWeight.bold,
               ),
-            )
-            ),
+            )),
             const SizedBox(height: 30),
             Text(
               "Umur: ${bmi_obj.umur}",
@@ -48,7 +48,6 @@ class BMIDetail extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            
             const SizedBox(height: 30),
             Text(
               "Tinggi: ${bmi_obj.tinggi}",
@@ -57,8 +56,6 @@ class BMIDetail extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
-
             const SizedBox(height: 30),
             Text(
               "Berat: ${bmi_obj.berat}",
@@ -67,7 +64,6 @@ class BMIDetail extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
             const SizedBox(height: 10),
             Text(
               "Disubmit tanggal : " + bmi_obj.date_created,
@@ -76,7 +72,6 @@ class BMIDetail extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
             const SizedBox(height: 10),
             Text(
               "Status: " + bmi_obj.bmi_result.toString(),
@@ -85,8 +80,6 @@ class BMIDetail extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
-
             const SizedBox(height: 10),
             Text(
               "Deskripsi: \n" + bmi_obj.deskripsi_hasil,
@@ -95,8 +88,6 @@ class BMIDetail extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
-            
             const SizedBox(height: 10),
             Text(
               "keterangan_tambahan: \n" + bmi_obj.keterangan_tambahan,
@@ -105,9 +96,33 @@ class BMIDetail extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
             SizedBox(height: 15),
+            ListTile(
+                title: const Text('Hapus histori ini'),
+                onTap: () async {
+                  final bmi_pk = bmi_obj.pk;
 
+                  var response;
+                  try {
+                    response = await request.get(
+                        'https://health-bud.up.railway.app/bmi_calculator/delete-from-flutter/${bmi_pk}');
+
+                    // response = await request.post(
+                    //     'http://localhost:8000/bmi_calculator/delete-from-flutter/${bmi_pk}',
+                    //     {
+
+                  } catch (err) {
+                    print(err);
+                  }
+
+                  if (response['status']) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const BMIPage()),
+                    );
+                    print(response);
+                  }
+                }),
             ListTile(
                 title: const Text('Kembali'),
                 onTap: () {

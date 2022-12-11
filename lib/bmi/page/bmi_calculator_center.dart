@@ -205,9 +205,14 @@ class _BMI_CenterState extends State<BMI_Center> {
                       try {
                         print("::::::");
                         bmi_post_response = await request.post(
-                            'http://localhost:8000/bmi_calculator/add/${user_pk}',
+                            'https://health-bud.up.railway.app/bmi_calculator/add/${user_pk}',
                             data
                             );
+
+                        // bmi_post_response = await request.post(
+                        //     'http://localhost:8000/bmi_calculator/add/${user_pk}',
+                        //     data
+                        //     );
                         print("P");
                       } catch (e) {
                         print(e);

@@ -50,18 +50,19 @@ class _DrawerClassState extends State<DrawerClass> {
                   title: const Text('Logout'),
                   onTap: () async {
                     // Route menu ke halaman form
-                    var url = Uri.parse(
-                        'https://health-bud.up.railway.app/auth/logout/');
-
                     var response;
                     try {
                       response = await request.logout(
                           "https://health-bud.up.railway.app/auth/logout/");
+
+                      // response = await request.logout(
+                      //     "http://localhost:8000/auth/logout/");
+                      
                       // print((utf8.decode(response.bodyBytes)));
                       print(response);
                       loggedInUser = null;
                       generalUser = null;
-                      
+
                     } catch (err) {
                       print("axz");
                     }

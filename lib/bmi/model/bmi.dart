@@ -16,6 +16,7 @@ String toDoToJson(List<BMI> data) =>
 
 class BMI {
   BMI({
+    required this.pk,
     required this.user,
     required this.umur,
     required this.tinggi,
@@ -26,6 +27,7 @@ class BMI {
     required this.keterangan_tambahan,
   });
 
+  int pk;
   int user;
   int umur;
   int tinggi;
@@ -36,6 +38,7 @@ class BMI {
   String keterangan_tambahan;
 
   factory BMI.fromJson(Map<String, dynamic> json) => BMI(
+        pk: json["pk"],
         user: json["fields"]["user"],
         umur: json["fields"]["umur"],
         tinggi: json["fields"]["tinggi"],
@@ -47,6 +50,7 @@ class BMI {
       );
 
   Map<String, dynamic> toJson() => {
+        "pk" : pk,
         "user": user,
         "umur": umur,
         "tinggi": tinggi,
