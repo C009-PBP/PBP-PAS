@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:healthbud/bmi/page/bmi_calculator_page.dart';
 
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -31,6 +32,8 @@ class MyApp extends StatelessWidget {
         home: const MyHomePage(title: 'Flutter App'),
         routes: {
           "/login": (BuildContext context) => const LoginPage(),
+          "/BMIPage": (BuildContext context) => const BMIPage(),
+          "/BMICenter": (BuildContext context) => const BMIPage(),
         },
       ),
     );

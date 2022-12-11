@@ -16,6 +16,10 @@ import 'package:healthbud/bmi/tools/fetcherBMI.dart';
 
 import 'package:healthbud/core/tools/drawer.dart';
 
+import 'package:healthbud/core/tools/loggedInUser.dart';
+
+import 'package:healthbud/core/model/user.dart';
+
 class BMI_Center extends StatefulWidget {
   const BMI_Center({super.key});
 
@@ -130,7 +134,6 @@ class _BMI_CenterState extends State<BMI_Center> {
                     },
                   ),
                 ),
-
                 Padding(
                   // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
@@ -174,7 +177,6 @@ class _BMI_CenterState extends State<BMI_Center> {
                     },
                   ),
                 ),
-
                 TextButton(
                   child: const Text(
                     "Cek BMI",
@@ -183,9 +185,36 @@ class _BMI_CenterState extends State<BMI_Center> {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
-                      
+                      final user_pk = loggedInUser!.pk;
+                      // var url = Uri.parse(
+                      //     'https://health-bud.up.railway.app/bmi_calculator/add/${user_pk}');
+
+                      // var url = Uri.parse(
+                      //     'http://localhost:8000/bmi_calculator/add/${user_pk}');
+
+                      dynamic data = {
+                        // 'user': generalUser,
+                        'umur': _umur.toString(),
+                        'tinggi': _tinggi.toString(),
+                        'berat': _berat.toString(),
+                      };
+
+                      var bmi_post_response;
+                      try {
+                        print("::::::");
+                        bmi_post_response = await request.post(
+                            'http://localhost:8000/bmi_calculator/add/${user_pk}',
+                            data
+                            );
+                        print("P");
+                      } catch (e) {
+                        print(e);
+                        print("Error post bmi");
+                      }
+
+                      print(bmi_post_response);
 
                       showDialog(
                         context: context,
@@ -202,8 +231,9 @@ class _BMI_CenterState extends State<BMI_Center> {
                                 shrinkWrap: true,
                                 children: <Widget>[
                                   Center(
-                                      child: const Text(
-                                          'Data berhasil dimasukkan!')),
+                                      child: bmi_post_response != null
+                                          ? Text('Data berhasil dimasukkan!')
+                                          : Text("Gagal menambah BMI.")),
                                   SizedBox(height: 20),
                                   // TODO: Munculkan informasi yang didapat dari form
                                   TextButton(
