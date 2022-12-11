@@ -28,14 +28,18 @@ class fetcherBMI {
 
     var response;
     try {
-      response = await http.get(
-        url,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/json",
-        },
-      );
-      // print((utf8.decode(response.bodyBytes)));
+      // response = await http.get(
+      //   url,
+      //   headers: {
+      //     "Access-Control-Allow-Origin": "*",
+      //     "Content-Type": "application/json",
+      //   },
+      // );
+
+      response = await request.get(
+          'https://health-bud.up.railway.app/bmi_calculator/json-flutter/${user_pk}');
+
+      print(response);
     } catch (err) {
       print(err);
     }
@@ -43,17 +47,17 @@ class fetcherBMI {
     // print("O");
     // melakukan decode response menjadi bentuk json
     // print(json.encode(response)); --> error
-    var data;
-    try {
-      data = jsonDecode(utf8.decode(response.bodyBytes));
-    } catch (e) {
-      print(e);
-    }
+    // var data;
+    // try {
+    //   data = jsonDecode(utf8.decode(response));
+    // } catch (e) {
+    //   print(e);
+    // }
     // print(data);
 
     // melakukan konversi data json menjadi object MyWatchList
     List<BMI> listBMI = [];
-    for (var d in data) {
+    for (var d in response) {
       if (d != null) {
         listBMI.add(BMI.fromJson(d));
       }

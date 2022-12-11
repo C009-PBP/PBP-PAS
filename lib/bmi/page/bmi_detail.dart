@@ -104,8 +104,9 @@ class BMIDetail extends StatelessWidget {
 
                   var response;
                   try {
-                    response = await request.get(
-                        'https://health-bud.up.railway.app/bmi_calculator/delete-from-flutter/${bmi_pk}');
+                    response = await request.post(
+                        'https://health-bud.up.railway.app/bmi_calculator/delete-from-flutter/${bmi_pk}',
+                        {});
 
                     // response = await request.post(
                     //     'http://localhost:8000/bmi_calculator/delete-from-flutter/${bmi_pk}',
