@@ -202,25 +202,35 @@ class _RegisterState extends State<Register> {
                     // 'username' and 'password' should be the values of the user login form.
                     var response = {};
                     try {
-                      // response = await request.login(
-                      //     "https://health-bud.up.railway.app/auth/login/", {
-                      //   'username': username,
-                      //   'password': password1,
-                      // });
+
                       if (role == 'Pasien') {
                         response = await request.post(
-                            "http://localhost:8000/auth/register_pasien/", {
+                            "https://health-bud.up.railway.app/auth/register_pasien/", {
                           'username': username,
                           'password1': password1,
                           'password2': password2,
                         });
+
+                        // response = await request.post(
+                        //     "http://localhost:8000/auth/register_pasien/", {
+                        //   'username': username,
+                        //   'password1': password1,
+                        //   'password2': password2,
+                        // });
                       }else{
                         response = await request.post(
-                            "http://localhost:8000/auth/register_dokter/", {
+                            "https://health-bud.up.railway.app/auth/register_dokter/", {
                           'username': username,
                           'password1': password1,
                           'password2': password2,
                         });
+
+                        // response = await request.post(
+                        //     "http://localhost:8000/auth/register_dokter/", {
+                        //   'username': username,
+                        //   'password1': password1,
+                        //   'password2': password2,
+                        // });
                       }
 
                     } catch (err) {

@@ -19,10 +19,12 @@ class fetcherBMI {
   fetcherBMI();
 
   Future<List<BMI>> fetchBMI() async {
-    
     final user_pk = loggedInUser!.pk;
-    // var url = Uri.parse('https://health-bud.up.railway.app/bmi_calculator/json-flutter/${user_pk}');
-    var url = Uri.parse('http://localhost:8000/bmi_calculator/json-flutter/${user_pk}');
+
+    var url = Uri.parse(
+        'https://health-bud.up.railway.app/bmi_calculator/json-flutter/${user_pk}');
+
+    // var url = Uri.parse('http://localhost:8000/bmi_calculator/json-flutter/${user_pk}');
 
     var response;
     try {
@@ -35,7 +37,7 @@ class fetcherBMI {
       );
       // print((utf8.decode(response.bodyBytes)));
     } catch (err) {
-      print("axz");
+      print(err);
     }
 
     // print("O");
@@ -43,9 +45,9 @@ class fetcherBMI {
     // print(json.encode(response)); --> error
     var data;
     try {
-      data = jsonDecode(utf8.decode(response.bodyBytes)); 
+      data = jsonDecode(utf8.decode(response.bodyBytes));
     } catch (e) {
-      print("askodaod");
+      print(e);
     }
     // print(data);
 
