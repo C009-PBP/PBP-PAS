@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:healthbud/authentication/page/Register.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:healthbud/main.dart';
@@ -16,16 +14,16 @@ import 'package:healthbud/authentication/model/user.dart';
 import 'package:healthbud/core/model/user.dart';
 import 'package:healthbud/core/tools/loggedInUser.dart';
 
-var request;
+import 'package:healthbud/authentication/page/LoginPage.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class Register extends StatefulWidget {
+  const Register({super.key});
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterState extends State<Register> {
   final _loginFormKey = GlobalKey<FormState>();
   bool isPasswordVisible = false;
   void togglePasswordView() {
@@ -36,6 +34,9 @@ class _LoginPageState extends State<LoginPage> {
 
   String username = "";
   String password1 = "";
+  String password2 = "";
+  List<String> list_role = ['Pasien', 'Dokter'];
+  String role = 'Pasien';
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
     // TODO : Create login page
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: Text('Form Registrasi Pasien'),
       ),
       drawer: DrawerClass(parentScreen: ScreenName.Login),
       body: Form(
@@ -129,10 +130,69 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
 
-                //TODO: IMPLEMENT LOGIN
+                Padding(
+                  // Menggunakan padding sebesar 8 pixels
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: "Isi ulang password Anda.",
+                      labelText: "Password confirmation",
+                      // Menambahkan icon agar lebih intuitif
+                      icon: const Icon(Icons.people),
+                      // Menambahkan circular border agar lebih rapi
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(5.0),
+                      ),
+                    ),
+
+                    // Menambahkan behavior saat nama diketik
+                    onChanged: (String? value) {
+                      setState(() {
+                        password2 = value!;
+                      });
+                    },
+                    // Menambahkan behavior saat data disimpan
+                    onSaved: (String? value) {
+                      setState(() {
+                        password2 = value!;
+                      });
+                    },
+                    // Validator sebagai validasi form
+                    validator: (String? value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Password tidak boleh kosong!';
+                      }
+                      return null;
+                    },
+                  ),
+                ),
+
+                ListTile(
+                  leading: const Icon(Icons.class_),
+                  title: const Text(
+                    'Pilih Role',
+                  ),
+                  trailing: DropdownButton(
+                    value: role,
+                    icon: const Icon(Icons.keyboard_arrow_down),
+                    items: list_role.map((String items) {
+                      return DropdownMenuItem(
+                        value: items,
+                        child: Text(items),
+                      );
+                    }).toList(),
+                    onChanged: (String? newValue) {
+                      setState(() {
+                        role = newValue!;
+                      });
+                    },
+                  ),
+                ),
+
+                //TODO: IMPLEMENT REGISTER
                 TextButton(
                   child: const Text(
-                    "Login",
+                    "Register",
                     style: TextStyle(color: Colors.white),
                   ),
                   style: ButtonStyle(
@@ -147,100 +207,39 @@ class _LoginPageState extends State<LoginPage> {
                       //   'username': username,
                       //   'password': password1,
                       // });
+                      if (role == 'Pasien') {
+                        response = await request.post(
+                            "http://localhost:8000/auth/register_pasien/", {
+                          'username': username,
+                          'password1': password1,
+                          'password2': password2,
+                        });
+                      }else{
+                        response = await request.post(
+                            "http://localhost:8000/auth/register_dokter/", {
+                          'username': username,
+                          'password1': password1,
+                          'password2': password2,
+                        });
+                      }
 
-                      response = await request
-                          .login("http://localhost:8000/auth/login/", {
-                        'username': username,
-                        'password': password1,
-                      });
-
-                      // print(response);
-                      // print("OI");
                     } catch (err) {
-                      //dapet error message, bukan data-object
-                      // print("HMM");
+
                       response['status'] = false;
                     }
 
                     print(response);
 
-                    if (!mounted) return;
-
-                    if (request.loggedIn) {
-                      // Code here will run if the login succeeded.
-                      // print("BERHASIL LOGIN");
-                      // print(request);
-                      var response_get_loggedInUser;
-                      try {
-                        // response_get_user = await request.get(
-                        //     "https://health-bud.up.railway.app/auth/user-data");
-
-                        response_get_loggedInUser = await request
-                            .get("http://localhost:8000/auth/user-data");
-
-                        // print("============");
-                        print(response_get_loggedInUser);
-                      } catch (e) {
-                        print("ERROr");
-                      }
-
-                      // var data;
-                      // try {
-                      //   data = jsonDecode(utf8.decode(response1.bodyBytes));
-                      // } catch (e) {
-                      //   print("askodaod");
-                      // }
-
-                      loggedInUser =
-                          LoggedInUser.fromJson(response_get_loggedInUser);
-
-                      print(loggedInUser!.username);
-
-                      var response_get_generalUser;
-                      try {
-                        // response_get_user = await request.get(
-                        //     "https://health-bud.up.railway.app/auth/user-data");
-
-                        response_get_generalUser = await request.get(
-                            "http://localhost:8000/authentication/user-json/${loggedInUser!.pk}");
-
-                        // print("============");
-                        print(response_get_generalUser);
-                      } catch (e) {
-                        print("ERROr");
-                      }
-
-                      // var data;
-                      // try {
-                      //   data = jsonDecode(utf8.decode(response1.bodyBytes));
-                      // } catch (e) {
-                      //   print("askodaod");
-                      // }
-
-                      generalUser = User.fromJson(response_get_generalUser[0]);
-
-                      // print(generalUser);
-
-                      if (response['status']) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("Login berhasil, selamat datang " +
-                              loggedInUser!.role +
-                              " " +
-                              loggedInUser!.username +
-                              "!"),
-                        ));
-                      } else {
-                        ScaffoldMessenger.of(context)
-                            .showSnackBar(const SnackBar(
-                          content: Text(
-                              "Login gagal. Periksa username dan passwordmu!"),
-                        ));
-                      }
+                    if (response['status']) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Register berhasil!")));
                     } else {
-                      // print("GA BERHASIL LOGIN");
-
-                      // Code here will run if the login failed (wrong username/password).
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content:
+                            Text("Register gagal. Periksa kembali passwordmu!"),
+                      ));
                     }
+
                     if (_loginFormKey.currentState!.validate()) {
                       // List listBudget = [];
                       // listBudget.add(_namaLengkap);
@@ -285,19 +284,12 @@ class _LoginPageState extends State<LoginPage> {
                   },
                 ),
 
-                SizedBox(width: 25, height: 25),
-
-                Padding(
-                  // Menggunakan padding sebesar 8 pixels
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("Belum punya akun?"),
-                ),
-                SizedBox(width: 15, height: 10),
+                SizedBox(width: 15, height: 20),
 
                 //TODO: IMPLEMENT REGISTER
                 TextButton(
                     child: const Text(
-                      "Register",
+                      "Kembali",
                       style: TextStyle(color: Colors.white),
                     ),
                     style: ButtonStyle(
@@ -305,14 +297,11 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     onPressed: () {
                       Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Register()),
-                    );
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginPage()),
+                      );
                     }),
-
-                SizedBox(width: 25, height: 25),
-                                    //TODO: IMPLEMENT REGISTER
               ],
             ),
           ),
