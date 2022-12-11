@@ -59,6 +59,8 @@ class _DrawerClassState extends State<DrawerClass> {
                       // print((utf8.decode(response.bodyBytes)));
                       print(response);
                       loggedInUser = null;
+                      generalUser = null;
+                      
                     } catch (err) {
                       print("axz");
                     }
