@@ -8,6 +8,7 @@ import 'package:healthbud/homepage/page/homepage.dart';
 import 'package:healthbud/main.dart';
 
 import 'package:healthbud/core/tools/loggedInUser.dart';
+import 'package:healthbud/pengaturan_akun/page/pengaturan_akun_page.dart';
 
 //source:   https://stackoverflow.com/questions/66925164/refactoring-dart-code-into-a-separate-file
 enum ScreenName {
@@ -16,6 +17,8 @@ enum ScreenName {
   BMI,
   BMI_Detail,
   BMICalculatorPage,
+  pengaturanAkun,
+  riwayatKesehatan,
 }
 
 class DrawerClass extends StatefulWidget {
@@ -141,6 +144,29 @@ class _DrawerClassState extends State<DrawerClass> {
               //   context,
               //   MaterialPageRoute(builder: (context) => BMI_Center()),
               // );
+            },
+          ),
+          ListTile(
+            title: const Text('Pengaturan Akun'),
+            onTap: () {
+              if (loggedInUser != null) {
+                if (loggedInUser!.role == 'pasien') {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const PengaturanAkunPage()),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text(
+                        "Maaf, Anda harus terdaftar sebagai pasien untuk mengakses aplikasi ini."),
+                  ));
+                }
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text(
+                      "Maaf, Anda harus terdaftar sebagai pasien untuk mengakses aplikasi ini."),
+                ));
+              }
             },
           ),
         ],
