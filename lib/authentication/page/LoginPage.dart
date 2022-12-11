@@ -142,22 +142,21 @@ class _LoginPageState extends State<LoginPage> {
                     // 'username' and 'password' should be the values of the user login form.
                     var response = {};
                     try {
-                      // response = await request.login(
-                      //     "https://health-bud.up.railway.app/auth/login/", {
-                      //   'username': username,
-                      //   'password': password1,
-                      // });
-
-                      response = await request
-                          .login("http://localhost:8000/auth/login/", {
+                      response = await request.login(
+                          "https://health-bud.up.railway.app/auth/login/", {
                         'username': username,
                         'password': password1,
                       });
 
+                      // response = await request
+                      //     .login("http://localhost:8000/auth/login/", {
+                      //   'username': username,
+                      //   'password': password1,
+                      // });
+
                       // print(response);
                       // print("OI");
                     } catch (err) {
-                      //dapet error message, bukan data-object
                       // print("HMM");
                       response['status'] = false;
                     }
@@ -172,16 +171,16 @@ class _LoginPageState extends State<LoginPage> {
                       // print(request);
                       var response_get_loggedInUser;
                       try {
-                        // response_get_user = await request.get(
-                        //     "https://health-bud.up.railway.app/auth/user-data");
+                        response_get_loggedInUser = await request.get(
+                            "https://health-bud.up.railway.app/auth/user-data");
 
-                        response_get_loggedInUser = await request
-                            .get("http://localhost:8000/auth/user-data");
+                        // response_get_loggedInUser = await request
+                        //     .get("http://localhost:8000/auth/user-data");
 
                         // print("============");
                         print(response_get_loggedInUser);
                       } catch (e) {
-                        print("ERROr");
+                        print(e);
                       }
 
                       // var data;
@@ -198,24 +197,17 @@ class _LoginPageState extends State<LoginPage> {
 
                       var response_get_generalUser;
                       try {
-                        // response_get_user = await request.get(
-                        //     "https://health-bud.up.railway.app/auth/user-data");
-
                         response_get_generalUser = await request.get(
-                            "http://localhost:8000/authentication/user-json/${loggedInUser!.pk}");
+                            "https://health-bud.up.railway.app/authentication/user-json/${loggedInUser!.pk}");
+
+                        // response_get_generalUser = await request.get(
+                        //     "http://localhost:8000/authentication/user-json/${loggedInUser!.pk}");
 
                         // print("============");
                         print(response_get_generalUser);
                       } catch (e) {
-                        print("ERROr");
+                        print(e);
                       }
-
-                      // var data;
-                      // try {
-                      //   data = jsonDecode(utf8.decode(response1.bodyBytes));
-                      // } catch (e) {
-                      //   print("askodaod");
-                      // }
 
                       generalUser = User.fromJson(response_get_generalUser[0]);
 
@@ -305,14 +297,14 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     onPressed: () {
                       Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const Register()),
-                    );
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Register()),
+                      );
                     }),
 
                 SizedBox(width: 25, height: 25),
-                                    //TODO: IMPLEMENT REGISTER
+                //TODO: IMPLEMENT REGISTER
               ],
             ),
           ),
