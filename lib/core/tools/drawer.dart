@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:healthbud/authentication/page/LoginPage.dart';
 import 'package:healthbud/bmi/page/bmi_calculator_page.dart';
 import 'package:healthbud/bmi/page/bmi_calculator_center.dart';
+import 'package:healthbud/homepage/page/homepage.dart';
 
 import 'package:healthbud/main.dart';
 
@@ -82,6 +83,16 @@ class _DrawerClassState extends State<DrawerClass> {
                     );
                   },
                 ),
+
+          ListTile(
+            title: const Text('Homepage'),
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const Homepage()),
+              );
+            },
+          ),
 
           ListTile(
             title: const Text('Kalkulator BMI'),
