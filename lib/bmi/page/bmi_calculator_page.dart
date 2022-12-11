@@ -1,5 +1,5 @@
 //TODO: BIKIN PAGE UTAMA UNTUK BMI
-//STATUS: 
+//STATUS:
 //FUNGSIONALITAS: ?
 //DESIGN: BELUM
 
@@ -21,6 +21,7 @@ import 'package:healthbud/core/tools/drawer.dart';
 
 
 
+
 class BMIPage extends StatefulWidget {
   const BMIPage({Key? key}) : super(key: key);
 
@@ -31,7 +32,6 @@ class BMIPage extends StatefulWidget {
 class _BMIPageState extends State<BMIPage> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
           title: const Text('Kalkulator BMI'),

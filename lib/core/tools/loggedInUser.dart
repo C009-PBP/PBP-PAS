@@ -1,4 +1,8 @@
 import 'package:healthbud/authentication/model/user.dart';
 
-User? loggedInUser;
+import 'package:healthbud/core/model/user.dart';
+
+LoggedInUser? loggedInUser;
+
+User? generalUser;
 

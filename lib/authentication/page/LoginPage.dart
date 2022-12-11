@@ -11,8 +11,8 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:healthbud/core/tools/drawer.dart';
 import 'package:healthbud/authentication/model/user.dart';
 
+import 'package:healthbud/core/model/user.dart';
 import 'package:healthbud/core/tools/loggedInUser.dart';
-
 
 var request;
 
@@ -140,8 +140,14 @@ class _LoginPageState extends State<LoginPage> {
                     // 'username' and 'password' should be the values of the user login form.
                     var response = {};
                     try {
-                      response = await request.login(
-                          "https://health-bud.up.railway.app/auth/login/", {
+                      // response = await request.login(
+                      //     "https://health-bud.up.railway.app/auth/login/", {
+                      //   'username': username,
+                      //   'password': password1,
+                      // });
+
+                      response = await request
+                          .login("http://localhost:8000/auth/login/", {
                         'username': username,
                         'password': password1,
                       });
@@ -162,12 +168,16 @@ class _LoginPageState extends State<LoginPage> {
                       // Code here will run if the login succeeded.
                       // print("BERHASIL LOGIN");
                       // print(request);
-                      var response_get_user;
+                      var response_get_loggedInUser;
                       try {
-                        response_get_user = await request.get(
-                            "https://health-bud.up.railway.app/auth/user-data");
+                        // response_get_user = await request.get(
+                        //     "https://health-bud.up.railway.app/auth/user-data");
+
+                        response_get_loggedInUser = await request
+                            .get("http://localhost:8000/auth/user-data");
+
                         // print("============");
-                        print(response_get_user);
+                        print(response_get_loggedInUser);
                       } catch (e) {
                         print("ERROr");
                       }
@@ -179,9 +189,36 @@ class _LoginPageState extends State<LoginPage> {
                       //   print("askodaod");
                       // }
 
-                      loggedInUser = User.fromJson(response_get_user);
+                      loggedInUser =
+                          LoggedInUser.fromJson(response_get_loggedInUser);
 
                       print(loggedInUser!.username);
+
+                      var response_get_generalUser;
+                      try {
+                        // response_get_user = await request.get(
+                        //     "https://health-bud.up.railway.app/auth/user-data");
+
+                        response_get_generalUser = await request.get(
+                            "http://localhost:8000/authentication/user-json/${loggedInUser!.pk}");
+
+                        // print("============");
+                        print(response_get_generalUser);
+                      } catch (e) {
+                        print("ERROr");
+                      }
+
+                      // var data;
+                      // try {
+                      //   data = jsonDecode(utf8.decode(response1.bodyBytes));
+                      // } catch (e) {
+                      //   print("askodaod");
+                      // }
+
+                      generalUser = User.fromJson(response_get_generalUser[0]);
+                      
+                      // print(generalUser);
+
 
                       if (response['status']) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
