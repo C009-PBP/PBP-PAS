@@ -6,7 +6,6 @@ import 'package:healthbud/core/tools/loggedInUser.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'package:healthbud/main.dart';
 
 import 'package:healthbud/homepage/model/homepage_review.dart';
 
@@ -15,13 +14,13 @@ import 'package:pbp_django_auth/pbp_django_auth.dart';
 
 import 'package:healthbud/authentication/page/LoginPage.dart';
 
-class fetcherBMI {
-  fetcherBMI();
+class fetcherHomepage {
+  fetcherHomepage();
 
-  Future<List<Homepage>> fetchBMI() async {
-    
+  Future<List<Homepage>> fetchHomepage() async {
     final user_pk = loggedInUser!.pk;
-    var url = Uri.parse('https://health-bud.up.railway.app/bmi_calculator/json-flutter/${user_pk}');
+    // var url = Uri.parse('https://health-bud.up.railway.app/bmi_calculator/json-flutter/${user_pk}');
+    var url = Uri.parse('http://localhost:8000/json-flutter/${user_pk}');
 
     var response;
     try {
@@ -42,7 +41,7 @@ class fetcherBMI {
     // print(json.encode(response)); --> error
     var data;
     try {
-      data = jsonDecode(utf8.decode(response.bodyBytes)); 
+      data = jsonDecode(utf8.decode(response.bodyBytes));
     } catch (e) {
       print("askodaod");
     }

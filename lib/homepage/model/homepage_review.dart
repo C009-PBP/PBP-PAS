@@ -1,6 +1,3 @@
-// To parse this JSON data, do
-//
-//     final homepage = homepageFromJson(jsonString);
 
 import 'dart:convert';
 

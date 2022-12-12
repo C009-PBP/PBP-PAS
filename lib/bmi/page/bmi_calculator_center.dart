@@ -65,7 +65,7 @@ class _BMI_CenterState extends State<BMI_Center> {
                     // Menambahkan behavior saat nama diketik
                     onChanged: (String? value) {
                       setState(() {
-                        if (value == null || value!.isEmpty) {
+                        if (value == null || value.isEmpty) {
                           _umur = 0;
                         } else if (int.tryParse(value) != null) {
                           _umur = int.parse(value);
@@ -108,7 +108,7 @@ class _BMI_CenterState extends State<BMI_Center> {
                     // Menambahkan behavior saat nama diketik
                     onChanged: (String? value) {
                       setState(() {
-                        if (value == null || value!.isEmpty) {
+                        if (value == null || value.isEmpty) {
                           _berat = 0;
                         } else if (int.tryParse(value) != null) {
                           _berat = int.parse(value);
@@ -151,7 +151,7 @@ class _BMI_CenterState extends State<BMI_Center> {
                     // Menambahkan behavior saat nama diketik
                     onChanged: (String? value) {
                       setState(() {
-                        if (value == null || value!.isEmpty) {
+                        if (value == null || value.isEmpty) {
                           _tinggi = 0;
                         } else if (int.tryParse(value) != null) {
                           _tinggi = int.parse(value);
@@ -191,8 +191,8 @@ class _BMI_CenterState extends State<BMI_Center> {
                       // var url = Uri.parse(
                       //     'https://health-bud.up.railway.app/bmi_calculator/add/${user_pk}');
 
-                      // var url = Uri.parse(
-                      //     'http://localhost:8000/bmi_calculator/add/${user_pk}');
+                      var url = Uri.parse(
+                          'http://localhost:8000/bmi_calculator/add/${user_pk}');
 
                       dynamic data = {
                         // 'user': generalUser,
@@ -204,15 +204,15 @@ class _BMI_CenterState extends State<BMI_Center> {
                       var bmi_post_response;
                       try {
                         print("::::::");
-                        bmi_post_response = await request.post(
-                            'https://health-bud.up.railway.app/bmi_calculator/add/${user_pk}',
-                            data
-                            );
-
                         // bmi_post_response = await request.post(
-                        //     'http://localhost:8000/bmi_calculator/add/${user_pk}',
+                        //     'https://health-bud.up.railway.app/bmi_calculator/add/${user_pk}',
                         //     data
                         //     );
+
+                        bmi_post_response = await request.post(
+                            'http://localhost:8000/bmi_calculator/add/${user_pk}',
+                            data
+                            );
                         print("P");
                       } catch (e) {
                         print(e);

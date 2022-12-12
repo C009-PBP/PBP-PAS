@@ -4,6 +4,7 @@ import 'package:healthbud/authentication/page/LoginPage.dart';
 import 'package:healthbud/bmi/page/bmi_calculator_page.dart';
 import 'package:healthbud/bmi/page/bmi_calculator_center.dart';
 import 'package:healthbud/homepage/page/homepage.dart';
+import 'package:healthbud/homepage/page/homepage_form.dart';
 
 import 'package:healthbud/main.dart';
 
@@ -14,6 +15,7 @@ import 'package:healthbud/pengaturan_akun/page/pengaturan_akun_page.dart';
 enum ScreenName {
   Login,
   Home,
+  Homepage,
   BMI,
   BMI_Detail,
   BMICalculatorPage,
