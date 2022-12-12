@@ -2,10 +2,12 @@
 //STATUS: (MUNGKIN) UDAH
 
 import 'package:flutter/material.dart';
+import 'package:healthbud/authentication/page/LoginPage.dart';
 
 import 'package:healthbud/bmi/page/bmi_calculator_page.dart';
 
 import 'package:healthbud/bmi/model/bmi.dart';
+import 'package:healthbud/core/tools/loggedInUser.dart';
 
 import 'package:healthbud/main.dart';
 
@@ -32,14 +34,13 @@ class BMIDetail extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
-              child: Text(
-              "User : ${bmi_obj.user}",
+                child: Text(
+              "User : ${loggedInUser!.username}",
               style: const TextStyle(
                 fontSize: 30.0,
                 fontWeight: FontWeight.bold,
               ),
-            )
-            ),
+            )),
             const SizedBox(height: 30),
             Text(
               "Umur: ${bmi_obj.umur}",
@@ -48,7 +49,6 @@ class BMIDetail extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            
             const SizedBox(height: 30),
             Text(
               "Tinggi: ${bmi_obj.tinggi}",
@@ -57,8 +57,6 @@ class BMIDetail extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
-
             const SizedBox(height: 30),
             Text(
               "Berat: ${bmi_obj.berat}",
@@ -67,8 +65,7 @@ class BMIDetail extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
-            const SizedBox(height: 10),
+             const SizedBox(height: 30),
             Text(
               "Disubmit tanggal : " + bmi_obj.date_created,
               style: const TextStyle(
@@ -76,8 +73,7 @@ class BMIDetail extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
-            const SizedBox(height: 10),
+             const SizedBox(height: 30),
             Text(
               "Status: " + bmi_obj.bmi_result.toString(),
               style: const TextStyle(
@@ -85,29 +81,50 @@ class BMIDetail extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
-
-            const SizedBox(height: 10),
+             const SizedBox(height: 30),
             Text(
-              "Deskripsi: \n" + bmi_obj.deskripsi_hasil,
+              "Deskripsi: " + bmi_obj.deskripsi_hasil,
               style: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
-
-            
-            const SizedBox(height: 10),
+             const SizedBox(height: 30),
             Text(
-              "keterangan_tambahan: \n" + bmi_obj.keterangan_tambahan,
+              "keterangan_tambahan: " + bmi_obj.keterangan_tambahan,
               style: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
+            const SizedBox(height: 50),
+            ListTile(
+                title: const Text('Hapus histori ini'),
+                onTap: () async {
+                  final bmi_pk = bmi_obj.pk;
 
-            SizedBox(height: 15),
+                  var response;
+                  try {
+                    response = await request.post(
+                        'https://health-bud.up.railway.app/bmi_calculator/delete-from-flutter/${bmi_pk}',
+                        {});
 
+                    // response = await request.post(
+                    //     'http://localhost:8000/bmi_calculator/delete-from-flutter/${bmi_pk}',
+                    //     {
+
+                  } catch (err) {
+                    print(err);
+                  }
+
+                  if (response['status']) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const BMIPage()),
+                    );
+                    print(response);
+                  }
+                }),
             ListTile(
                 title: const Text('Kembali'),
                 onTap: () {

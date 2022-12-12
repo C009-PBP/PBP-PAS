@@ -7,6 +7,7 @@ import 'package:healthbud/bmi/page/bmi_calculator_center.dart';
 import 'package:healthbud/main.dart';
 
 import 'package:healthbud/core/tools/loggedInUser.dart';
+import 'package:healthbud/pengaturan_akun/page/pengaturan_akun_page.dart';
 
 //source:   https://stackoverflow.com/questions/66925164/refactoring-dart-code-into-a-separate-file
 enum ScreenName {
@@ -15,6 +16,8 @@ enum ScreenName {
   BMI,
   BMI_Detail,
   BMICalculatorPage,
+  pengaturanAkun,
+  riwayatKesehatan,
 }
 
 class DrawerClass extends StatefulWidget {
@@ -49,18 +52,19 @@ class _DrawerClassState extends State<DrawerClass> {
                   title: const Text('Logout'),
                   onTap: () async {
                     // Route menu ke halaman form
-                    var url = Uri.parse(
-                        'https://health-bud.up.railway.app/auth/logout/');
-
                     var response;
                     try {
                       response = await request.logout(
                           "https://health-bud.up.railway.app/auth/logout/");
+
+                      // response = await request.logout(
+                      //     "http://localhost:8000/auth/logout/");
+                      
                       // print((utf8.decode(response.bodyBytes)));
                       print(response);
                       loggedInUser = null;
                       generalUser = null;
-                      
+
                     } catch (err) {
                       print("axz");
                     }
@@ -92,7 +96,7 @@ class _DrawerClassState extends State<DrawerClass> {
                 if (loggedInUser!.role == 'pasien') {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const BMIPage()),
+                    MaterialPageRoute(builder: (context) => const BMI_Center()),
                   );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -110,25 +114,26 @@ class _DrawerClassState extends State<DrawerClass> {
           ),
 
           ListTile(
-            title: const Text('Kalkulator BMI Test'),
+            title: const Text('Pengaturan Akun'),
             onTap: () {
-              // Route menu ke halaman form
               if (loggedInUser != null) {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const BMI_Center()),
-                );
+                if (loggedInUser!.role == 'pasien' || loggedInUser!.role == 'dokter') {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const PengaturanAkunPage()),
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text(
+                        "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
+                  ));
+                }
               } else {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const BMIPage()),
-                );
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text(
+                      "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
+                ));
               }
-
-              // Navigator.pushReplacement(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => BMI_Center()),
-              // );
             },
           ),
         ],
