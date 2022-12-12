@@ -6,8 +6,10 @@ import '../../core/tools/loggedInUser.dart';
 import '../models/post_model.dart';
 
 Future<List<Fields>> fetchQuestion() async {
+  //print("ok");
   final userPk = loggedInUser!.pk;
-  var url = Uri.parse('http://health-bud.up.railway.app/tanya_dokter/json-all/$userPk');
+  //print(userPk);
+  var url = Uri.parse('https://health-bud.up.railway.app/tanya_dokter/json-all/$userPk');
   var response = await http.get(
     url,
     headers: {
@@ -16,6 +18,8 @@ Future<List<Fields>> fetchQuestion() async {
     },
   );
 
+  //print("ya");
+  //print(response);
   var data = jsonDecode(utf8.decode(response.bodyBytes));
 
   List<Fields> listQuestion = [];
