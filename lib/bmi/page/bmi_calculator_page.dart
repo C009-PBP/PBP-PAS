@@ -58,7 +58,7 @@ class _BMIPageState extends State<BMIPage> {
                   return ListView.builder(
                       itemCount: snapshot.data!.length,
                       itemBuilder: (_, index) => ListTile(
-                            title: Text("${snapshot.data![index]}"),
+                            title: Text(" BMI : ${snapshot.data![index].bmi_result.toString()}, dibuat tanggal : ${snapshot.data![index].date_created}"),
                             onTap: () {
                               Navigator.push(
                                 context,

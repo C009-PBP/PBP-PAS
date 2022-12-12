@@ -6,21 +6,27 @@ import 'package:healthbud/homepage/page/homepage_form.dart';
 import 'package:healthbud/homepage/page/homepage_page.dart';
 import 'package:healthbud/homepage/tools/fetcherHomepage.dart';
 import 'package:healthbud/pengaturan_akun/page/pengaturan_akun_page.dart';
+// import 'package:healthbud/firebase_options.dart';
 
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:healthbud/authentication/page/LoginPage.dart';
 
 import 'package:healthbud/core/tools/drawer.dart';
+import 'package:healthbud/core/model/user.dart';
 
-import 'package:healthbud/authentication/model/user.dart';
+import 'package:healthbud/authentication/page/LoginPage.dart';
+import '../../info_dokter/page/info_dokter_page.dart';
+// import 'firebase_options.dart';
+// import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main()  {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +36,7 @@ class MyApp extends StatelessWidget {
         return request;
       },
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Homepage',
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -189,7 +196,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const BMI_Center()),
+                                    builder: (context) => const InfoDokterPage()),
                               );
                             },
                             style: ElevatedButton.styleFrom(
@@ -231,7 +238,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const BMI_Center()),
+                                    builder: (context) => const InfoDokterPage()),
                               );
                             },
                             style: ElevatedButton.styleFrom(
@@ -379,12 +386,26 @@ class _HomepageState extends State<MyHomePage> {
                                   padding: const EdgeInsets.all(10.0),
                                   child: ElevatedButton(
                                       onPressed: () {
-                                        Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const BMI_Center()),
-                                        );
+                                        if (loggedInUser != null) {
+                                          if (loggedInUser!.role == 'pasien' ||
+                                              loggedInUser!.role == 'dokter') {
+                                            Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => const PengaturanAkunPage()),
+                                            );
+                                          } else {
+                                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                              content: Text(
+                                                  "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
+                                            ));
+                                          }
+                                        } else {
+                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                            content: Text(
+                                                "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
+                                          ));
+                                        }
                                       },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor:
@@ -514,12 +535,26 @@ class _HomepageState extends State<MyHomePage> {
                                   padding: const EdgeInsets.all(10.0),
                                   child: ElevatedButton(
                                       onPressed: () {
-                                        Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const BMI_Center()),
-                                        );
+                                        if (loggedInUser != null) {
+                                          if (loggedInUser!.role == 'pasien' ||
+                                              loggedInUser!.role == 'dokter') {
+                                            Navigator.pushReplacement(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) => const PengaturanAkunPage()),
+                                            );
+                                          } else {
+                                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                              content: Text(
+                                                  "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
+                                            ));
+                                          }
+                                        } else {
+                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                            content: Text(
+                                                "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
+                                          ));
+                                        }
                                       },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor:
@@ -534,21 +569,23 @@ class _HomepageState extends State<MyHomePage> {
                       child: ElevatedButton(
                           onPressed: () {
                             if (loggedInUser != null) {
-                              if (loggedInUser!.role == 'pasien') {
+                              if (loggedInUser!.role == 'pasien' ||
+                                  loggedInUser!.role == 'dokter') {
                                 Navigator.pushReplacement(
                                   context,
-                                  MaterialPageRoute(builder: (context) => const BMIPage()),
+                                  MaterialPageRoute(
+                                      builder: (context) => const PengaturanAkunPage()),
                                 );
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                   content: Text(
-                                      "Maaf, Anda harus terdaftar sebagai pasien untuk mengakses aplikasi ini."),
+                                      "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
                                 ));
                               }
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                 content: Text(
-                                    "Maaf, Anda harus terdaftar sebagai pasien untuk mengakses aplikasi ini."),
+                                    "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
                               ));
                             }
                           },
@@ -590,291 +627,3 @@ class _HomepageState extends State<MyHomePage> {
     );
   }
 }
-
-// import 'package:flutter/widgets.dart';
-
-// import 'package:healthbud/homepage/page/homepage.dart';
-// import 'package:healthbud/bmi/page/bmi_calculator_page.dart';
-// import 'package:healthbud/bmi/page/bmi_calculator_center.dart';
-// import 'package:healthbud/homepage/page/homepage_form.dart';
-// import 'package:http/http.dart' as http;
-
-// import 'package:flutter/material.dart';
-
-// import 'package:healthbud/homepage/model/homepage_review.dart';
-
-// import 'package:healthbud/main.dart';
-// import 'package:healthbud/authentication/page/LoginPage.dart';
-
-// import 'dart:convert';
-
-// import 'package:healthbud/homepage/tools/fetcherHomepage.dart';
-
-// import 'package:healthbud/core/tools/drawer.dart';
-// import 'package:pbp_django_auth/pbp_django_auth.dart';
-// import 'package:provider/provider.dart';
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Provider(
-//       create: (_) {
-//         CookieRequest request = CookieRequest();
-//         return request;
-//       },
-//       child: MaterialApp(
-//         title: 'Flutter App',
-//         theme: ThemeData(
-//           primarySwatch: Colors.blue,
-//         ),
-//         home: const Homepage(title: 'Flutter App'),
-//         routes: {
-//           "/login": (BuildContext context) => const LoginPage(),
-//           "/BMIPage": (BuildContext context) => const BMIPage(),
-//           "/BMICenter": (BuildContext context) => const BMIPage(),
-//         },
-//       ),
-//     );
-//   }
-// }
-
-// class Homepage extends StatefulWidget {
-//   const Homepage({super.key, required this.title});
-
-//   final String title;
-//   @override
-//   State<Homepage> createState() => _HomepageState();
-// }
-
-// class _HomepageState extends State<Homepage> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text('Form'),
-//       ),
-//       drawer: DrawerClass(parentScreen: ScreenName.Homepage),
-//       body: FutureBuilder(
-//           future: fetcherHomepage().fetchHomepage(),
-//           builder: (context, AsyncSnapshot snapshot) {
-//             if (snapshot.data == null) {
-//               return const Center(child: CircularProgressIndicator());
-//             } else {
-//               if (!snapshot.hasData) {
-//                 return Column(
-//                   children: const [
-//                     Text(
-//                       "",
-//                       style: TextStyle(color: Color(0xff59A5D8), fontSize: 20),
-//                     ),
-//                     SizedBox(height: 8),
-//                   ],
-//                 );
-//               } else {
-//                 return ListView(
-//                   children: [
-//                     Card(
-//                       margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-//                       shape: RoundedRectangleBorder(
-//                         borderRadius: BorderRadius.circular(12.0),
-//                       ),
-//                       child: Container(
-//                           padding: const EdgeInsets.all(20.0),
-//                           child: Column(
-//                               crossAxisAlignment: CrossAxisAlignment.start,
-//                               children: [
-//                                 const Padding(
-//                                   padding: EdgeInsets.all(10.0),
-//                                   child: Text(
-//                                     "Kalkulator BMI",
-//                                     style: TextStyle(
-//                                         fontSize: 20,
-//                                         fontWeight: FontWeight.bold),
-//                                   ),
-//                                 ),
-//                                 Padding(
-//                                   padding: EdgeInsets.all(10.0),
-//                                   child: Text(
-//                                     "Di kalkulator BMI, kamu dapat menghitung Body Mass Index kamu, nantinya dapat digunakan untuk mengukur body fat atau persentase lemak pada tubuh. Perhitungan dapat dilakukan dengan membagi berat dengan kuadrat dari tinggi tubuh.",
-//                                     style: TextStyle(fontSize: 15),
-//                                   ),
-//                                 ),
-//                                 Padding(
-//                                   padding: const EdgeInsets.all(10.0),
-//                                   child: ElevatedButton(
-//                                       onPressed: () {
-//                                         Navigator.pushReplacement(
-//                                           context,
-//                                           MaterialPageRoute(
-//                                               builder: (context) =>
-//                                                   const BMI_Center()),
-//                                         );
-//                                       },
-//                                       style: ElevatedButton.styleFrom(
-//                                         backgroundColor:
-//                                             const Color(0xff4A60E9),
-//                                       ),
-//                                       child: const Text('Kalkulator BMI')),
-//                                 ),
-//                               ])),
-//                     ),
-//                     Card(
-//                       margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-//                       shape: RoundedRectangleBorder(
-//                         borderRadius: BorderRadius.circular(12.0),
-//                       ),
-//                       child: Container(
-//                           padding: const EdgeInsets.all(20.0),
-//                           child: Column(
-//                               crossAxisAlignment: CrossAxisAlignment.start,
-//                               children: [
-//                                 const Padding(
-//                                   padding: EdgeInsets.all(10.0),
-//                                   child: Text(
-//                                     "Info Dokter",
-//                                     style: TextStyle(
-//                                         fontSize: 20,
-//                                         fontWeight: FontWeight.bold),
-//                                   ),
-//                                 ),
-//                                 Padding(
-//                                   padding: EdgeInsets.all(10.0),
-//                                   child: Text(
-//                                     "Di Info Dokter, kamu dapat melihat berbagai macam jadwal dokter yang tersedia dengan spesialis berbeda dan kamu juga bisa membuat review terkait dokter yang bersangkutan",
-//                                     style: TextStyle(fontSize: 15),
-//                                   ),
-//                                 ),
-//                                 Padding(
-//                                   padding: const EdgeInsets.all(10.0),
-//                                   child: ElevatedButton(
-//                                       onPressed: () {
-//                                         Navigator.pushReplacement(
-//                                           context,
-//                                           MaterialPageRoute(
-//                                               builder: (context) =>
-//                                                   const BMI_Center()),
-//                                         );
-//                                       },
-//                                       style: ElevatedButton.styleFrom(
-//                                         backgroundColor:
-//                                             const Color(0xff4A60E9),
-//                                       ),
-//                                       child: const Text('Info Dokter')),
-//                                 ),
-//                               ])),
-//                     ),
-//                     Card(
-//                       margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-//                       shape: RoundedRectangleBorder(
-//                         borderRadius: BorderRadius.circular(12.0),
-//                       ),
-//                       child: Container(
-//                           padding: const EdgeInsets.all(20.0),
-//                           child: Column(
-//                               crossAxisAlignment: CrossAxisAlignment.start,
-//                               children: [
-//                                 const Padding(
-//                                   padding: EdgeInsets.all(10.0),
-//                                   child: Text(
-//                                     "Tanya Dokter",
-//                                     style: TextStyle(
-//                                         fontSize: 20,
-//                                         fontWeight: FontWeight.bold),
-//                                   ),
-//                                 ),
-//                                 Padding(
-//                                   padding: EdgeInsets.all(10.0),
-//                                   child: Text(
-//                                     "Di Tanya Dokter, kamu bisa membuat forum untuk melakukan diskusi atau tanya jawab seputar kesehatan dengan dokter yang sesuai dengan spesialisasinya.",
-//                                     style: TextStyle(fontSize: 15),
-//                                   ),
-//                                 ),
-//                                 Padding(
-//                                   padding: const EdgeInsets.all(10.0),
-//                                   child: ElevatedButton(
-//                                       onPressed: () {
-//                                         Navigator.pushReplacement(
-//                                           context,
-//                                           MaterialPageRoute(
-//                                               builder: (context) =>
-//                                                   const BMI_Center()),
-//                                         );
-//                                       },
-//                                       style: ElevatedButton.styleFrom(
-//                                         backgroundColor:
-//                                             const Color(0xff4A60E9),
-//                                       ),
-//                                       child: const Text('Tanya Dokter')),
-//                                 ),
-//                               ])),
-//                     ),
-//                     Card(
-//                       margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-//                       shape: RoundedRectangleBorder(
-//                         borderRadius: BorderRadius.circular(12.0),
-//                       ),
-//                       child: Container(
-//                           padding: const EdgeInsets.all(20.0),
-//                           child: Column(
-//                               crossAxisAlignment: CrossAxisAlignment.start,
-//                               children: [
-//                                 const Padding(
-//                                   padding: EdgeInsets.all(10.0),
-//                                   child: Text(
-//                                     "Pengaturan Akun",
-//                                     style: TextStyle(
-//                                         fontSize: 20,
-//                                         fontWeight: FontWeight.bold),
-//                                   ),
-//                                 ),
-//                                 Padding(
-//                                   padding: EdgeInsets.all(10.0),
-//                                   child: Text(
-//                                     "Di Pengaturan Akun, kamu dapat menambahkan beberapa hal tentang dirimu untuk administrasi. Selain itu, ada juga riwayat kesehatan dimana kamu bisa mengisi riwayat kesehatan yang akan berguna untuk konsultasi nantinya.",
-//                                     style: TextStyle(fontSize: 15),
-//                                   ),
-//                                 ),
-//                                 Padding(
-//                                   padding: const EdgeInsets.all(10.0),
-//                                   child: ElevatedButton(
-//                                       onPressed: () {
-//                                         Navigator.pushReplacement(
-//                                           context,
-//                                           MaterialPageRoute(
-//                                               builder: (context) =>
-//                                                   const BMI_Center()),
-//                                         );
-//                                       },
-//                                       style: ElevatedButton.styleFrom(
-//                                         backgroundColor:
-//                                             const Color(0xff4A60E9),
-//                                       ),
-//                                       child: const Text('Pengaturan Akun')),
-//                                 ),
-//                               ])),
-//                     ),
-//                     Padding(
-//                       padding: const EdgeInsets.all(10.0),
-//                       child: ElevatedButton(
-//                           onPressed: () {
-//                             Navigator.pushReplacement(
-//                               context,
-//                               MaterialPageRoute(
-//                                   builder: (context) => const Homepage_Form()),
-//                             );
-//                           },
-//                           style: ElevatedButton.styleFrom(
-//                             backgroundColor: const Color(0xff4A60E9),
-//                           ),
-//                           child: const Text('Review')),
-//                     ),
-//                   ],
-//                 );
-//               }
-//             }
-//           }),
-//     );
-//   }
-// }

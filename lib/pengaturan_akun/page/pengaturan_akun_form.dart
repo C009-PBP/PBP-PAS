@@ -29,15 +29,15 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
     'Papua Tengah','Papua Pegunungan','Papua Selatan'];
 
   final userPk = loggedInUser!.pk;
-  void submit(request, firstname, lastname, phone, email, dob, address, city, province, gender) async {
+  void submit(request, firstname, lastname, email, phone, dob, gender, address, city, province) async {
     await request.post(
         'https://health-bud.up.railway.app/pengaturan_akun/update-flutter/$userPk',
         {
-          'first_name': firstname,
-          'last_name': lastname,
-          'email': email,
-          'phone_no': phone,
-          'birth_date': dob.toString(),
+          "first_name": firstname,
+          "last_name": lastname,
+          "email": email,
+          "phone_no": phone,
+          "birth_date": dob.toString(),
           "gender": gender,
           "street": address,
           "city": city,
@@ -195,7 +195,7 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
                           },
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
-                              return 'Alamat!';
+                              return 'Alamat tidak boleh kosong!';
                             }
                             return null;
                           },
@@ -295,7 +295,7 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              submit(request, _firstname, _lastname, _phone, _email, _dob, _address, _city, _province, _gender);
+                              submit(request, _firstname, _lastname, _email, _phone, _dob, _gender, _address, _city, _province);
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(

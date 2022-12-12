@@ -97,7 +97,7 @@ class _Homepage_FormState extends State<Homepage_Form> {
                     if (_formKey.currentState!.validate()) {
                       final user_pk = loggedInUser!.pk;
                       var url = Uri.parse(
-                          'https://health-bud.up.railway.app/bmi_calculator/add-flutter');
+                          'https://health-bud.up.railway.app/add/${user_pk}');
 
                       // var url =
                       //     Uri.parse('http://localhost:8000/add/${user_pk}');
