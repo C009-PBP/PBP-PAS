@@ -4,8 +4,8 @@ import 'dart:convert';
 import 'package:healthbud/core/tools/loggedInUser.dart';
 
 Future<List<Profile>> fetchProfile() async {
-  final user_pk = loggedInUser!.pk;
-  var url = Uri.parse('https://health-bud.up.railway.app/pengaturan_akun/json-flutter/$user_pk');
+  final userPk = loggedInUser!.pk;
+  var url = Uri.parse('https://health-bud.up.railway.app/pengaturan_akun/json-flutter/$userPk');
 
   var response = await http.get(
     url,

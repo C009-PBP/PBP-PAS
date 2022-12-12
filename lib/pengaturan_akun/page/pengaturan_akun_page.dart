@@ -19,7 +19,7 @@ class _PengaturanAkunPageState extends State<PengaturanAkunPage> {
         appBar: AppBar(
           title: const Text('Pengaturan Akun'),
         ),
-        drawer: DrawerClass(parentScreen: ScreenName.pengaturanAkun),
+        drawer: const DrawerClass(parentScreen: ScreenName.pengaturanAkun),
         body: FutureBuilder(
             future: fetchProfile(),
             builder: (context, AsyncSnapshot snapshot) {
@@ -222,12 +222,15 @@ class _PengaturanAkunPageState extends State<PengaturanAkunPage> {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Padding(
-                                          padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
-                                          child: Text(
-                                            "${snapshot.data![0].fields.firstName} ${snapshot.data![0].fields.lastName}",
-                                            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                                          ),
+                                        Expanded(
+                                            child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
+                                              child: Text(
+                                                "${snapshot.data![0].fields.firstName} ${snapshot.data![0].fields.lastName}",
+                                                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                                overflow: TextOverflow.fade,
+                                              ),
+                                            ),
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
@@ -250,94 +253,82 @@ class _PengaturanAkunPageState extends State<PengaturanAkunPage> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Expanded(
-                                              child: Wrap(
-                                                children: [
-                                                  const Icon(Icons.person_outline),
-                                                  Text(
-                                                    " ${loggedInUser!.username}",
-                                                    style: const TextStyle(fontSize: 16),
-                                                    overflow: TextOverflow.ellipsis,
-                                                  ),
-                                                ],
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Wrap(
+                                            children: [
+                                              const Icon(Icons.person_outline),
+                                              Text(
+                                                " ${loggedInUser!.username}",
+                                                style: const TextStyle(fontSize: 16),
+                                                overflow: TextOverflow.ellipsis,
                                               ),
-                                            )
+                                            ],
+                                          ),
                                         ),
                                         Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Expanded(
-                                              child: Wrap(
-                                                children: [
-                                                  const Icon(Icons.markunread_outlined),
-                                                  Text(
-                                                    " ${snapshot.data![0].fields.email}",
-                                                    style: const TextStyle(fontSize: 16),
-                                                    overflow: TextOverflow.fade,
-                                                  ),
-                                                ],
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Wrap(
+                                            children: [
+                                              const Icon(Icons.markunread_outlined),
+                                              Text(
+                                                " ${snapshot.data![0].fields.email}",
+                                                style: const TextStyle(fontSize: 16),
+                                                overflow: TextOverflow.fade,
                                               ),
-                                            )
+                                            ],
+                                          ),
                                         ),
                                         Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Expanded(
-                                              child: Wrap(
-                                                children: const [
-                                                  Icon(Icons.calendar_month_outlined),
-                                                  Text(
-                                                    " DOB",
-                                                    style: TextStyle(fontSize: 16),
-                                                    overflow: TextOverflow.ellipsis,
-                                                  ),
-                                                ],
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Wrap(
+                                            children: [
+                                              const Icon(Icons.calendar_month_outlined),
+                                              Text(
+                                                " ${snapshot.data![0].fields.birthDate}",
+                                                style: const TextStyle(fontSize: 16),
+                                                overflow: TextOverflow.ellipsis,
                                               ),
-                                            )
+                                            ],
+                                          ),
                                         ),
                                         Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Expanded(
-                                              child: Wrap(
-                                                children: [
-                                                  const Icon(Icons.account_circle_outlined),
-                                                  Text(
-                                                      " ${loggedInUser!.role}",
-                                                      style: const TextStyle(fontSize: 16),
-                                                      overflow: TextOverflow.fade
-                                                  ),
-                                                ],
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Wrap(
+                                            children: [
+                                              const Icon(Icons.account_circle_outlined),
+                                              Text(
+                                                  " ${loggedInUser!.role}",
+                                                  style: const TextStyle(fontSize: 16),
+                                                  overflow: TextOverflow.ellipsis
                                               ),
-                                            )
+                                            ],
+                                          ),
                                         ),
                                         Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Expanded(
-                                              child: Wrap(
-                                                children: [
-                                                  const Icon(Icons.wc_outlined),
-                                                  Text(
-                                                      " ${snapshot.data![0].fields.gender}",
-                                                      style: const TextStyle(fontSize: 16),
-                                                      overflow: TextOverflow.fade
-                                                  ),
-                                                ],
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Wrap(
+                                            children: [
+                                              const Icon(Icons.wc_outlined),
+                                              Text(
+                                                  " ${snapshot.data![0].fields.gender}",
+                                                  style: const TextStyle(fontSize: 16),
+                                                  overflow: TextOverflow.ellipsis
                                               ),
-                                            )
+                                            ],
+                                          ),
                                         ),
                                         Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Expanded(
-                                              child: Wrap(
-                                                children: [
-                                                  const Icon(Icons.location_on_outlined),
-                                                  Text(
-                                                    " ${snapshot.data![0].fields.city}, ${snapshot.data![0].fields.province}",
-                                                    style: const TextStyle(fontSize: 16),
-                                                    overflow: TextOverflow.fade,
-                                                  ),
-                                                ],
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Wrap(
+                                            children: [
+                                              const Icon(Icons.location_on_outlined),
+                                              Text(
+                                                " ${snapshot.data![0].fields.city}, ${snapshot.data![0].fields.province}",
+                                                style: const TextStyle(fontSize: 16),
+                                                overflow: TextOverflow.ellipsis,
                                               ),
-                                            )
+                                            ],
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -362,9 +353,18 @@ class _PengaturanAkunPageState extends State<PengaturanAkunPage> {
                                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                                     ),
                                   ),
+                                  const Padding(
+                                    padding: EdgeInsets.all(10.0),
+                                    child: Text(
+                                      "Fitur yang bertujuan mempermudah Pasien dalam mengelola informasi-informasi terkait kesehatannya.",
+                                      style: TextStyle(fontSize: 14, color: Color(0xff8C9096)),
+                                      textAlign: TextAlign.justify,
+                                    ),
+                                  ),
                                   Padding(
                                     padding: const EdgeInsets.all(10.0),
-                                    child: ElevatedButton(
+                                    child: loggedInUser!.role == 'pasien'?
+                                    ElevatedButton(
                                         onPressed: () {
                                           Navigator.pushReplacement(
                                             context,
@@ -375,7 +375,14 @@ class _PengaturanAkunPageState extends State<PengaturanAkunPage> {
                                           backgroundColor: const Color(0xff4A60E9),
                                         ),
                                         child: const Text('Lihat Riwayat Kesehatan')
-                                    ),
+                                    ):
+                                    ElevatedButton(
+                                        onPressed: null,
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: const Color(0xff4A60E9),
+                                        ),
+                                        child: const Text('Lihat Riwayat Kesehatan')
+                                    )
                                   ),
                                 ]
                             )
