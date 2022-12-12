@@ -217,10 +217,10 @@ class _BMI_CenterState extends State<BMI_Center> {
                         //     data
                         //     );
 
-                        bmi_post_response = await request.post(
-                            'http://localhost:8000/bmi_calculator/add/${user_pk}',
-                            data
-                            );
+                        // bmi_post_response = await request.post(
+                        //     'http://localhost:8000/bmi_calculator/add/${user_pk}',
+                        //     data
+                        //     );
                         print("P");
                         var meter_tinggi = _tinggi / 100;
                         bmi_result = _berat / (meter_tinggi * meter_tinggi);
