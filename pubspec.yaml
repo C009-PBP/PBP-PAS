@@ -42,6 +42,7 @@ dependencies:
   dropdown_button2: ^1.9.2 
   http: ^0.13.5
   intl: ^0.17.0
+  firebase_core:
   firebase_auth:
 
 dev_dependencies:

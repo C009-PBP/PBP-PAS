@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:healthbud/bmi/page/bmi_calculator_page.dart';
+import 'package:healthbud/firebase_options.dart';
 
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
@@ -9,13 +10,16 @@ import 'package:healthbud/core/tools/drawer.dart';
 
 import 'package:healthbud/authentication/model/user.dart';
 
+import 'firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main()  {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
