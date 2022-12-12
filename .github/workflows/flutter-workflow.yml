@@ -40,14 +40,15 @@ jobs:
       # - name: Analyze
       #   run: flutter analyze
               
-      - name: Generate Java keystore
-        env: 
-          KEY_JKS: ${{ secrets.KEY_JKS }}
-        run: echo "$KEY_JKS" | base64 --decode > upload-keystore.jks 
+#       - name: Generate Java keystore
+#         env: 
+#           KEY_JKS: ${{ secrets.KEY_JKS }}
+#         run: echo "$KEY_JKS" | base64 --decode > keystore.jks 
+# #         run: echo "$KEY_JKS" | base64 --decode > upload-keystore.jks 
               
       - name: Build APK
-        env:
-          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+#         env:
+#           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: flutter build apk --split-per-abi
 
       - name: Get current date

@@ -9,6 +9,8 @@ import 'package:healthbud/main.dart';
 import 'package:healthbud/core/tools/loggedInUser.dart';
 import 'package:healthbud/pengaturan_akun/page/pengaturan_akun_page.dart';
 
+import '../../info_dokter/page/info_dokter_page.dart';
+
 //source:   https://stackoverflow.com/questions/66925164/refactoring-dart-code-into-a-separate-file
 enum ScreenName {
   Login,
@@ -18,6 +20,7 @@ enum ScreenName {
   BMICalculatorPage,
   pengaturanAkun,
   riwayatKesehatan,
+  Info_Dokter,
 }
 
 class DrawerClass extends StatefulWidget {
@@ -59,12 +62,11 @@ class _DrawerClassState extends State<DrawerClass> {
 
                       // response = await request.logout(
                       //     "http://localhost:8000/auth/logout/");
-                      
+
                       // print((utf8.decode(response.bodyBytes)));
                       print(response);
                       loggedInUser = null;
                       generalUser = null;
-
                     } catch (err) {
                       print("axz");
                     }
@@ -117,10 +119,12 @@ class _DrawerClassState extends State<DrawerClass> {
             title: const Text('Pengaturan Akun'),
             onTap: () {
               if (loggedInUser != null) {
-                if (loggedInUser!.role == 'pasien' || loggedInUser!.role == 'dokter') {
+                if (loggedInUser!.role == 'pasien' ||
+                    loggedInUser!.role == 'dokter') {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const PengaturanAkunPage()),
+                    MaterialPageRoute(
+                        builder: (context) => const PengaturanAkunPage()),
                   );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -134,6 +138,16 @@ class _DrawerClassState extends State<DrawerClass> {
                       "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
                 ));
               }
+            },
+          ),
+          ListTile(
+            title: const Text('Info Dokter'),
+            onTap: () {
+              // Route menu ke halaman info dokter
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => InfoDokterPage()),
+              );
             },
           ),
         ],
