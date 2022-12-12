@@ -1,47 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:healthbud/core/tools/drawer.dart';
-import 'package:healthbud/pengaturan_akun/page/pengaturan_akun_page.dart';
+import 'package:healthbud/pengaturan_akun/page/riwayat_kesehatan_page.dart';
 import 'package:healthbud/core/tools/loggedInUser.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
 
-class ProfileFormPage extends StatefulWidget {
-  const ProfileFormPage({super.key});
+class EmergencyFormPage extends StatefulWidget {
+  const EmergencyFormPage({super.key});
 
   @override
-  State<ProfileFormPage> createState() => _ProfileFormPageState();
+  State<EmergencyFormPage> createState() => _EmergencyFormPageState();
 }
 
-class _ProfileFormPageState extends State<ProfileFormPage> {
+class _EmergencyFormPageState extends State<EmergencyFormPage> {
   final _formKey = GlobalKey<FormState>();
-  String _firstname = '';
-  String _lastname = '';
-  String _phone = '';
-  String _email = '';
-  DateTime? _dob;
-  String _address = '';
-  String _city = '';
-  String? _province;
-  String _gender = '';
+  String _emergencyfirst = '';
+  String _emergencylast = '';
+  String _emergencyrelation = '';
+  String _emergencyphone = '';
+  String _emergencyaddress = '';
+  String _emergencycity = '';
+  String? _emergencyprovince;
+
   List<String> provinces = ['Aceh','Sumatra Utara','Sumatra Barat','Riau','Kep. Riau','Jambi','Bengkulu','Sumatra Selatan','Kep. Bangka Belitung','Lampung','Banten',
     'DKI Jakarta','Jawa Barat','Jawa Tengah','DI Yogyakarta','Jawa Timur','Bali','NTB','NTT','Kalimantan Barat','Kalimantan Tengah','Kalimantan Selatan','Kalimantan Timur',
     'Kalimantan Utara','Sulawesi Barat','Sulawesi Selatan','Sulawesi Tenggara','Sulawesi Tengah','Gorontalo','Sulawesi Utara','Maluku Utara','Maluku','Papua Barat','Papua',
     'Papua Tengah','Papua Pegunungan','Papua Selatan'];
 
   final userPk = loggedInUser!.pk;
-  void submit(request, firstname, lastname, email, phone, dob, gender, address, city, province) async {
+  void submit(request, firstname, lastname, relationship, phone, address, city, province) async {
     await request.post(
-        'https://health-bud.up.railway.app/pengaturan_akun/update-flutter/$userPk',
+        'https://health-bud.up.railway.app/pengaturan_akun/update-emergency-flutter/$userPk',
         {
-          "first_name": firstname,
-          "last_name": lastname,
-          "email": email,
-          "phone_no": phone,
-          "birth_date": dob.toString(),
-          "gender": gender,
-          "street": address,
-          "city": city,
-          "province": province,
+          "emergency_firstname": firstname,
+          "emergency_lastname": lastname,
+          "emergency_relationship": relationship,
+          "emergency_phone_no": phone,
+          "emergency_street": address,
+          "emergency_city": city,
+          "emergency_province": province,
         });
   }
 
@@ -50,9 +47,9 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Form Pengaturan Akun'),
+        title: const Text('Form Kontak Darurat'),
       ),
-      drawer: const DrawerClass(parentScreen: ScreenName.pengaturanAkun),
+      drawer: const DrawerClass(parentScreen: ScreenName.riwayatKesehatan),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -73,12 +70,12 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
                           ),
                           onChanged: (String? value) {
                             setState(() {
-                              _firstname = value!;
+                              _emergencyfirst = value!;
                             });
                           },
                           onSaved: (String? value) {
                             setState(() {
-                              _firstname = value!;
+                              _emergencyfirst = value!;
                             });
                           },
                           validator: (String? value) {
@@ -101,17 +98,45 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
                           ),
                           onChanged: (String? value) {
                             setState(() {
-                              _lastname = value!;
+                              _emergencylast = value!;
                             });
                           },
                           onSaved: (String? value) {
                             setState(() {
-                              _lastname = value!;
+                              _emergencylast = value!;
                             });
                           },
                           validator: (String? value) {
                             if (value == null || value.isEmpty) {
                               return 'Nama belakang tidak boleh kosong!';
+                            }
+                            return null;
+                          },
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            hintText: "Hubungan dengan Pasien",
+                            labelText: "Hubungan dengan Pasien",
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(5.0),
+                            ),
+                          ),
+                          onChanged: (String? value) {
+                            setState(() {
+                              _emergencyrelation = value!;
+                            });
+                          },
+                          onSaved: (String? value) {
+                            setState(() {
+                              _emergencyrelation = value!;
+                            });
+                          },
+                          validator: (String? value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Hubungan dengan Pasien tidak boleh kosong!';
                             }
                             return null;
                           },
@@ -129,12 +154,12 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
                           ),
                           onChanged: (String? value) {
                             setState(() {
-                              _phone = value!;
+                              _emergencyphone = value!;
                             });
                           },
                           onSaved: (String? value) {
                             setState(() {
-                              _phone = value!;
+                              _emergencyphone = value!;
                             });
                           },
                           validator: (String? value) {
@@ -145,34 +170,7 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
                           },
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: TextFormField(
-                          decoration: InputDecoration(
-                            hintText: "Email",
-                            labelText: "Email",
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(5.0),
-                            ),
-                          ),
-                          onChanged: (String? value) {
-                            setState(() {
-                              _email = value!;
-                            });
-                          },
-                          onSaved: (String? value) {
-                            setState(() {
-                              _email = value!;
-                            });
-                          },
-                          validator: (String? value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Email tidak boleh kosong!';
-                            }
-                            return null;
-                          },
-                        ),
-                      ),
+
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(
@@ -185,12 +183,12 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
                           ),
                           onChanged: (String? value) {
                             setState(() {
-                              _address = value!;
+                              _emergencyaddress = value!;
                             });
                           },
                           onSaved: (String? value) {
                             setState(() {
-                              _address = value!;
+                              _emergencyaddress = value!;
                             });
                           },
                           validator: (String? value) {
@@ -213,12 +211,12 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
                           ),
                           onChanged: (String? value) {
                             setState(() {
-                              _city = value!;
+                              _emergencycity = value!;
                             });
                           },
                           onSaved: (String? value) {
                             setState(() {
-                              _city = value!;
+                              _emergencycity = value!;
                             });
                           },
                           validator: (String? value) {
@@ -232,7 +230,7 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: DropdownButton(
-                          value: _province,
+                          value: _emergencyprovince,
                           icon: const Icon(Icons.keyboard_arrow_down),
                           hint: const Text('Provinsi'),
                           items: provinces.map((String items) {
@@ -243,49 +241,10 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
                           }).toList(),
                           onChanged: (String? newValue) {
                             setState(() {
-                              _province = newValue!;
+                              _emergencyprovince = newValue!;
                             });
                           },
                         ),
-                      ),
-                      TextButton(
-                        child: const Text("Tanggal Lahir"),
-                        onPressed: () {
-                          showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(1900),
-                            lastDate: DateTime.now(),
-                          ).then((date) {
-                            setState(() {
-                              _dob = date!;
-                            });
-                          });
-                        },
-                      ),
-                      Column(
-                        children: [
-                          RadioListTile(
-                            title: const Text("Laki-Laki"),
-                            value: "Laki-Laki",
-                            groupValue: _gender,
-                            onChanged: (value){
-                              setState(() {
-                                _gender = value.toString();
-                              });
-                            },
-                          ),
-                          RadioListTile(
-                            title: const Text("Perempuan"),
-                            value: "Perempuan",
-                            groupValue: _gender,
-                            onChanged: (value){
-                              setState(() {
-                                _gender = value.toString();
-                              });
-                            },
-                          ),
-                        ],
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -295,11 +254,11 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
                           ),
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              submit(request, _firstname, _lastname, _email, _phone, _dob, _gender, _address, _city, _province);
+                              submit(request, _emergencyfirst, _emergencylast, _emergencyrelation, _emergencyphone, _emergencyaddress, _emergencycity, _emergencyprovince);
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const PengaturanAkunPage()),
+                                    builder: (context) => const RiwayatKesehatanPage()),
                               );
                             }
                           },
