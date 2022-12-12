@@ -1,11 +1,11 @@
-class InfoDokter {
+class ReviewDokter {
   String? model;
   int? pk;
   Fields? fields;
 
-  InfoDokter({this.model, this.pk, this.fields});
+  ReviewDokter({this.model, this.pk, this.fields});
 
-  InfoDokter.fromJson(Map<String, dynamic> json) {
+  ReviewDokter.fromJson(Map<String, dynamic> json) {
     model = json['model'];
     pk = json['pk'];
     fields =
@@ -24,23 +24,23 @@ class InfoDokter {
 }
 
 class Fields {
-  String? namaDokter;
-  String? hariPraktek;
-  String? jadwalPraktek;
+  int? user;
+  int? dokter;
+  String? review;
 
-  Fields({this.namaDokter, this.hariPraktek, this.jadwalPraktek});
+  Fields({this.user, this.dokter, this.review});
 
   Fields.fromJson(Map<String, dynamic> json) {
-    namaDokter = json['nama_dokter'];
-    hariPraktek = json['hari_praktek'];
-    jadwalPraktek = json['jadwal_praktek'];
+    user = json['user'];
+    dokter = json['dokter'];
+    review = json['review'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nama_dokter'] = this.namaDokter;
-    data['hari_praktek'] = this.hariPraktek;
-    data['jadwal_praktek'] = this.jadwalPraktek;
+    data['user'] = this.user;
+    data['dokter'] = this.dokter;
+    data['review'] = this.review;
     return data;
   }
 }
