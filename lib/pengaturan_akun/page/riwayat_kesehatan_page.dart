@@ -17,7 +17,7 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
         appBar: AppBar(
           title: const Text('Riwayat Kesehatan'),
         ),
-        drawer: DrawerClass(parentScreen: ScreenName.riwayatKesehatan),
+        drawer: const DrawerClass(parentScreen: ScreenName.riwayatKesehatan),
         body: FutureBuilder(
             future: fetchProfile(),
             builder: (context, AsyncSnapshot snapshot) {
