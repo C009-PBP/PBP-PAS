@@ -103,6 +103,7 @@ class BMIDetail extends StatelessWidget {
                 onTap: () async {
                   final bmi_pk = bmi_obj.pk;
 
+
                   var response;
                   try {
                     response = await request.post(
