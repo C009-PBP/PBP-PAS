@@ -51,6 +51,7 @@ class _BMI_CenterState extends State<BMI_Center> {
               children: [
                 Text("Selamat datang, ${loggedInUser!.username}. ayo cek BMI-mu!", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),),
                 Padding(
+                  
                   // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
