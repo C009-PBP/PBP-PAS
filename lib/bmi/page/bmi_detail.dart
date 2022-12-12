@@ -27,7 +27,7 @@ class BMIDetail extends StatelessWidget {
       appBar: AppBar(
         title: Text("Details"),
       ),
-      body: Padding(
+      body: ListView(children: [Padding(
         padding: const EdgeInsets.all(25.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -133,6 +133,6 @@ class BMIDetail extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ]));
   }
 }
