@@ -6,27 +6,21 @@ import 'package:healthbud/homepage/page/homepage_form.dart';
 import 'package:healthbud/homepage/page/homepage_page.dart';
 import 'package:healthbud/homepage/tools/fetcherHomepage.dart';
 import 'package:healthbud/pengaturan_akun/page/pengaturan_akun_page.dart';
-// import 'package:healthbud/firebase_options.dart';
 
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:healthbud/authentication/page/LoginPage.dart';
 
 import 'package:healthbud/core/tools/drawer.dart';
-import 'package:healthbud/core/model/user.dart';
 
-import 'package:healthbud/authentication/page/LoginPage.dart';
-import '../../info_dokter/page/info_dokter_page.dart';
-// import 'firebase_options.dart';
-// import 'package:firebase_core/firebase_core.dart';
+import 'package:healthbud/authentication/model/user.dart';
 
-void main()  {
+void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
-
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +30,6 @@ class MyApp extends StatelessWidget {
         return request;
       },
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
         title: 'Homepage',
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -196,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const InfoDokterPage()),
+                                    builder: (context) => const BMI_Center()),
                               );
                             },
                             style: ElevatedButton.styleFrom(
@@ -238,7 +231,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const InfoDokterPage()),
+                                    builder: (context) => const BMI_Center()),
                               );
                             },
                             style: ElevatedButton.styleFrom(
@@ -386,26 +379,12 @@ class _HomepageState extends State<MyHomePage> {
                                   padding: const EdgeInsets.all(10.0),
                                   child: ElevatedButton(
                                       onPressed: () {
-                                        if (loggedInUser != null) {
-                                          if (loggedInUser!.role == 'pasien' ||
-                                              loggedInUser!.role == 'dokter') {
-                                            Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) => const PengaturanAkunPage()),
-                                            );
-                                          } else {
-                                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                              content: Text(
-                                                  "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
-                                            ));
-                                          }
-                                        } else {
-                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                            content: Text(
-                                                "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
-                                          ));
-                                        }
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const BMI_Center()),
+                                        );
                                       },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor:
@@ -535,26 +514,12 @@ class _HomepageState extends State<MyHomePage> {
                                   padding: const EdgeInsets.all(10.0),
                                   child: ElevatedButton(
                                       onPressed: () {
-                                        if (loggedInUser != null) {
-                                          if (loggedInUser!.role == 'pasien' ||
-                                              loggedInUser!.role == 'dokter') {
-                                            Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(
-                                                  builder: (context) => const PengaturanAkunPage()),
-                                            );
-                                          } else {
-                                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                              content: Text(
-                                                  "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
-                                            ));
-                                          }
-                                        } else {
-                                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                            content: Text(
-                                                "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
-                                          ));
-                                        }
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const BMI_Center()),
+                                        );
                                       },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor:
@@ -569,23 +534,21 @@ class _HomepageState extends State<MyHomePage> {
                       child: ElevatedButton(
                           onPressed: () {
                             if (loggedInUser != null) {
-                              if (loggedInUser!.role == 'pasien' ||
-                                  loggedInUser!.role == 'dokter') {
+                              if (loggedInUser!.role == 'pasien') {
                                 Navigator.pushReplacement(
                                   context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const PengaturanAkunPage()),
+                                  MaterialPageRoute(builder: (context) => const BMIPage()),
                                 );
                               } else {
                                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                   content: Text(
-                                      "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
+                                      "Maaf, Anda harus terdaftar sebagai pasien untuk mengakses aplikasi ini."),
                                 ));
                               }
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                                 content: Text(
-                                    "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
+                                    "Maaf, Anda harus terdaftar sebagai pasien untuk mengakses aplikasi ini."),
                               ));
                             }
                           },

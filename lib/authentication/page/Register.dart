@@ -210,33 +210,33 @@ class _RegisterState extends State<Register> {
                     try {
 
                       if (role == 'Pasien') {
-                        response = await request.post(
-                            "https://health-bud.up.railway.app/auth/register_pasien/", {
-                          'username': username,
-                          'password1': password1,
-                          'password2': password2,
-                        });
-
                         // response = await request.post(
-                        //     "http://localhost:8000/auth/register_pasien/", {
+                        //     "https://health-bud.up.railway.app/auth/register_pasien/", {
                         //   'username': username,
                         //   'password1': password1,
                         //   'password2': password2,
                         // });
+
+                        response = await request.post(
+                            "http://localhost:8000/auth/register_pasien/", {
+                          'username': username,
+                          'password1': password1,
+                          'password2': password2,
+                        });
                       }else{
-                        response = await request.post(
-                            "https://health-bud.up.railway.app/auth/register_dokter/", {
-                          'username': username,
-                          'password1': password1,
-                          'password2': password2,
-                        });
-
                         // response = await request.post(
-                        //     "http://localhost:8000/auth/register_dokter/", {
+                        //     "https://health-bud.up.railway.app/auth/register_dokter/", {
                         //   'username': username,
                         //   'password1': password1,
                         //   'password2': password2,
                         // });
+
+                        response = await request.post(
+                            "http://localhost:8000/auth/register_dokter/", {
+                          'username': username,
+                          'password1': password1,
+                          'password2': password2,
+                        });
                       }
 
                     } catch (err) {

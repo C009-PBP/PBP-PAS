@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:healthbud/authentication/page/LoginPage.dart';
 import 'package:healthbud/bmi/page/bmi_calculator_page.dart';
 import 'package:healthbud/bmi/page/bmi_calculator_center.dart';
+import 'package:healthbud/homepage/page/homepage_form.dart';
 
 import 'package:healthbud/main.dart';
 
@@ -15,6 +16,7 @@ import '../../info_dokter/page/info_dokter_page.dart';
 enum ScreenName {
   Login,
   Home,
+  Homepage,
   BMI,
   BMI_Detail,
   BMICalculatorPage,
@@ -90,6 +92,7 @@ class _DrawerClassState extends State<DrawerClass> {
                     );
                   },
                 ),
+
 
           ListTile(
             title: const Text('Kalkulator BMI'),
