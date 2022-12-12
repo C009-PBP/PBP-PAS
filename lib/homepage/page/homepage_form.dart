@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:healthbud/core/tools/loggedInUser.dart';
 
-import 'package:healthbud/homepage/page/homepage.dart';
+import 'package:healthbud/homepage/page/homepage_page.dart';
 import 'package:healthbud/bmi/page/bmi_calculator_page.dart';
 import 'package:healthbud/bmi/page/bmi_calculator_center.dart';
 import 'package:http/http.dart' as http;
@@ -85,23 +85,22 @@ class _Homepage_FormState extends State<Homepage_Form> {
                     },
                   ),
                 ),
-
                 TextButton(
                   child: const Text(
-                    "Cek BMI",
+                    "Tambahkan",
                     style: TextStyle(color: Colors.white),
                   ),
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.blue),
+                    backgroundColor: MaterialStateProperty.all(Color(0xff4A60E9)),
                   ),
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       final user_pk = loggedInUser!.pk;
-                      // var url = Uri.parse(
-                      //     'https://health-bud.up.railway.app/bmi_calculator/add/${user_pk}');
-
                       var url = Uri.parse(
-                          'http://localhost:8000/add/${user_pk}');
+                          'https://health-bud.up.railway.app/bmi_calculator/add-flutter');
+
+                      // var url =
+                      //     Uri.parse('http://localhost:8000/add/${user_pk}');
 
                       dynamic data = {
                         // 'user': generalUser,
@@ -111,15 +110,11 @@ class _Homepage_FormState extends State<Homepage_Form> {
                       var review_post_response;
                       try {
                         print("::::::");
-                        // bmi_post_response = await request.post(
-                        //     'https://health-bud.up.railway.app/bmi_calculator/add/${user_pk}',
-                        //     data
-                        //     );
-
                         review_post_response = await request.post(
-                            'http://localhost:8000/add/${user_pk}',
-                            data
-                            );
+                            'https://health-bud.up.railway.app/add-flutter/', data);
+                        // review_post_response = await request.post(
+                        //     'http://localhost:8000/add-flutter/', data);
+
                         print("P");
                       } catch (e) {
                         print(e);
@@ -149,10 +144,21 @@ class _Homepage_FormState extends State<Homepage_Form> {
                                   SizedBox(height: 20),
                                   // TODO: Munculkan informasi yang didapat dari form
                                   TextButton(
+                                    style: ButtonStyle(
+                                      backgroundColor: MaterialStateProperty.all(Color(0xff4A60E9)),
+                                    ),
                                     onPressed: () {
-                                      Navigator.pop(context);
+                                      Navigator.pushReplacement(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const HomePage()),
+                                      );
                                     },
-                                    child: Text('Kembali'),
+                                    child: const Text(
+                                      "Kembali",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
                                   ),
                                 ],
                               ),

@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 List<Homepage> homepageFromJson(String str) => List<Homepage>.from(json.decode(str).map((x) => Homepage.fromJson(x)));

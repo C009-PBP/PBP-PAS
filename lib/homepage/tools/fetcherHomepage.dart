@@ -19,8 +19,8 @@ class fetcherHomepage {
 
   Future<List<Homepage>> fetchHomepage() async {
     final user_pk = loggedInUser!.pk;
-    // var url = Uri.parse('https://health-bud.up.railway.app/bmi_calculator/json-flutter/${user_pk}');
-    var url = Uri.parse('http://localhost:8000/json-flutter/${user_pk}');
+    var url = Uri.parse('https://health-bud.up.railway.app/json');
+    // var url = Uri.parse('http://localhost:8000/json');
 
     var response;
     try {
