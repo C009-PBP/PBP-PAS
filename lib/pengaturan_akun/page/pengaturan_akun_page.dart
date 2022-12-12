@@ -24,175 +24,7 @@ class _PengaturanAkunPageState extends State<PengaturanAkunPage> {
             future: fetchProfile(),
             builder: (context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
-                return ListView (
-                  children: [
-                    Card(
-                        margin: const EdgeInsets.fromLTRB(20, 20, 20, 10),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                        child: Container(
-                            padding: const EdgeInsets.all(20.0),
-                            child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      const Padding(
-                                        padding: EdgeInsets.fromLTRB(10, 10, 10, 20),
-                                        child: Text(
-                                          "Belum Diisi",
-                                          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
-                                        child: ElevatedButton(
-                                          onPressed: () {
-                                            Navigator.pushReplacement(
-                                              context,
-                                              MaterialPageRoute(builder: (context) => const ProfileFormPage()),
-                                            );
-                                          },
-                                          style: ElevatedButton.styleFrom(
-                                            backgroundColor: const Color(0xff4A60E9),
-                                          ),
-                                          child: const Icon(Icons.edit),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                              padding: const EdgeInsets.all(10.0),
-                                              child: Wrap(
-                                                children: [
-                                                  const Icon(Icons.person_outline),
-                                                  Text(
-                                                    " ${loggedInUser?.username}",
-                                                    style: const TextStyle(fontSize: 16),
-                                                  ),
-                                                ],
-                                              )
-                                          ),
-                                          Padding(
-                                              padding: const EdgeInsets.all(10.0),
-                                              child: Wrap(
-                                                children: const [
-                                                  Icon(Icons.markunread_outlined),
-                                                  Text(
-                                                    " Belum Diisi",
-                                                    style: TextStyle(fontSize: 16),
-                                                  ),
-                                                ],
-                                              )
-                                          ),
-                                          Padding(
-                                              padding: const EdgeInsets.all(10.0),
-                                              child: Wrap(
-                                                children: const [
-                                                  Icon(Icons.calendar_month_outlined),
-                                                  Text(
-                                                    " Belum Diisi",
-                                                    style: TextStyle(fontSize: 16),
-                                                  ),
-                                                ],
-                                              )
-                                          ),
-                                        ],
-                                      ),
-
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                              padding: const EdgeInsets.all(10.0),
-                                              child: Wrap(
-                                                children: [
-                                                  const Icon(Icons.account_circle_outlined),
-                                                  Text(
-                                                    " ${loggedInUser?.role}",
-                                                    style: const TextStyle(fontSize: 16),
-                                                  ),
-                                                ],
-                                              )
-                                          ),
-                                          Padding(
-                                              padding: const EdgeInsets.all(10.0),
-                                              child: Wrap(
-                                                children: const [
-                                                  Icon(Icons.wc_outlined),
-                                                  Text(
-                                                    " Belum Diisi",
-                                                    style: TextStyle(fontSize: 16),
-                                                  ),
-                                                ],
-                                              )
-                                          ),
-                                          Padding(
-                                              padding: const EdgeInsets.all(10.0),
-                                              child: Wrap(
-                                                children: const [
-                                                  Icon(Icons.location_on_outlined),
-                                                  Text(
-                                                    " Belum Diisi",
-                                                    style: TextStyle(fontSize: 16),
-                                                  ),
-                                                ],
-                                              )
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  )
-                                ]
-                            )
-                        )
-                    ),
-                    Card(
-                      margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: Container(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Text(
-                                    "Riwayat Kesehatan",
-                                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: ElevatedButton(
-                                      onPressed: () {
-                                        Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(builder: (context) => const RiwayatKesehatanPage()),
-                                        );
-                                      },
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: const Color(0xff4A60E9),
-                                      ),
-                                      child: const Text('Lihat Riwayat Kesehatan')
-                                  ),
-                                ),
-                              ]
-                          )
-                      ),
-                    ),
-                  ],
-                );
+                return const Center(child: CircularProgressIndicator());
               } else {
                 if (!snapshot.hasData) {
                   return Column(
@@ -226,7 +58,8 @@ class _PengaturanAkunPageState extends State<PengaturanAkunPage> {
                                             child: Padding(
                                               padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
                                               child: Text(
-                                                "${snapshot.data![0].fields.firstName} ${snapshot.data![0].fields.lastName}",
+                                                snapshot.data![0].fields.firstName != null?
+                                                "${snapshot.data![0].fields.firstName} ${snapshot.data![0].fields.lastName}" : "Belum Diisi",
                                                 style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                                                 overflow: TextOverflow.fade,
                                               ),
@@ -271,7 +104,8 @@ class _PengaturanAkunPageState extends State<PengaturanAkunPage> {
                                             children: [
                                               const Icon(Icons.markunread_outlined),
                                               Text(
-                                                " ${snapshot.data![0].fields.email}",
+                                                snapshot.data![0].fields.email != null?
+                                                " ${snapshot.data![0].fields.email}" : ' Belum Diisi',
                                                 style: const TextStyle(fontSize: 16),
                                                 overflow: TextOverflow.fade,
                                               ),
@@ -284,7 +118,8 @@ class _PengaturanAkunPageState extends State<PengaturanAkunPage> {
                                             children: [
                                               const Icon(Icons.calendar_month_outlined),
                                               Text(
-                                                " ${snapshot.data![0].fields.birthDate}",
+                                                snapshot.data![0].fields.birthDate != null?
+                                                " ${snapshot.data![0].fields.birthDate}" : " Belum Diisi",
                                                 style: const TextStyle(fontSize: 16),
                                                 overflow: TextOverflow.ellipsis,
                                               ),
@@ -297,7 +132,8 @@ class _PengaturanAkunPageState extends State<PengaturanAkunPage> {
                                             children: [
                                               const Icon(Icons.account_circle_outlined),
                                               Text(
-                                                  " ${loggedInUser!.role}",
+                                                  loggedInUser!.role == 'pasien'?
+                                                  " Pasien" : " Dokter",
                                                   style: const TextStyle(fontSize: 16),
                                                   overflow: TextOverflow.ellipsis
                                               ),
@@ -310,7 +146,8 @@ class _PengaturanAkunPageState extends State<PengaturanAkunPage> {
                                             children: [
                                               const Icon(Icons.wc_outlined),
                                               Text(
-                                                  " ${snapshot.data![0].fields.gender}",
+                                                  snapshot.data![0].fields.gender != null?
+                                                  " ${snapshot.data![0].fields.gender}" : " Belum Diisi",
                                                   style: const TextStyle(fontSize: 16),
                                                   overflow: TextOverflow.ellipsis
                                               ),
@@ -323,7 +160,8 @@ class _PengaturanAkunPageState extends State<PengaturanAkunPage> {
                                             children: [
                                               const Icon(Icons.location_on_outlined),
                                               Text(
-                                                " ${snapshot.data![0].fields.city}, ${snapshot.data![0].fields.province}",
+                                                snapshot.data![0].fields.province != null?
+                                                " ${snapshot.data![0].fields.city}, ${snapshot.data![0].fields.province}" : " Belum Diisi",
                                                 style: const TextStyle(fontSize: 16),
                                                 overflow: TextOverflow.ellipsis,
                                               ),
