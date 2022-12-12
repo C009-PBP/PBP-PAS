@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:healthbud/bmi/page/bmi_calculator_page.dart';
 
 import 'package:healthbud/bmi/page/bmi_detail.dart';
 import 'package:http/http.dart' as http;
@@ -48,6 +49,7 @@ class _BMI_CenterState extends State<BMI_Center> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
+                Text("Selamat datang, ${loggedInUser!.username}. ayo cek BMI-mu!", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),),
                 Padding(
                   // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
@@ -56,7 +58,7 @@ class _BMI_CenterState extends State<BMI_Center> {
                       hintText: "Contoh: ZZ",
                       labelText: "Umur",
                       // Menambahkan icon agar lebih intuitif
-                      icon: const Icon(Icons.people),
+                      icon: const Icon(Icons.nature_people_sharp),
                       // Menambahkan circular border agar lebih rapi
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -99,7 +101,7 @@ class _BMI_CenterState extends State<BMI_Center> {
                       hintText: "Contoh: ZZ",
                       labelText: "Berat badan (kg)",
                       // Menambahkan icon agar lebih intuitif
-                      icon: const Icon(Icons.people),
+                      icon: const Icon(Icons.monitor_weight_outlined),
                       // Menambahkan circular border agar lebih rapi
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -142,7 +144,7 @@ class _BMI_CenterState extends State<BMI_Center> {
                       hintText: "Contoh: ZZ",
                       labelText: "Tinggi badan (cm)",
                       // Menambahkan icon agar lebih intuitif
-                      icon: const Icon(Icons.people),
+                      icon: const Icon(Icons.height),
                       // Menambahkan circular border agar lebih rapi
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5.0),
@@ -202,24 +204,28 @@ class _BMI_CenterState extends State<BMI_Center> {
                       };
 
                       var bmi_post_response;
+                      var bmi_result;
                       try {
                         print("::::::");
                         bmi_post_response = await request.post(
                             'https://health-bud.up.railway.app/bmi_calculator/add/${user_pk}',
-                            data
-                            );
+                            data);
 
                         // bmi_post_response = await request.post(
                         //     'http://localhost:8000/bmi_calculator/add/${user_pk}',
                         //     data
                         //     );
                         print("P");
+                        var meter_tinggi = _tinggi / 100;
+                        bmi_result = _berat / (meter_tinggi * meter_tinggi);
                       } catch (e) {
                         print(e);
                         print("Error post bmi");
                       }
 
-                      print(bmi_post_response);
+                      // print(bmi_post_response);
+
+                      var bmi_rslt = 0;
 
                       showDialog(
                         context: context,
@@ -237,7 +243,8 @@ class _BMI_CenterState extends State<BMI_Center> {
                                 children: <Widget>[
                                   Center(
                                       child: bmi_post_response != null
-                                          ? Text('Data berhasil dimasukkan!')
+                                          ? Text(
+                                              'Data berhasil dimasukkan. Hasil BMI Anda: ${bmi_result}')
                                           : Text("Gagal menambah BMI.")),
                                   SizedBox(height: 20),
                                   // TODO: Munculkan informasi yang didapat dari form
@@ -256,6 +263,22 @@ class _BMI_CenterState extends State<BMI_Center> {
                     }
                   },
                 ),
+                SizedBox(height: 25, width: 25),
+                TextButton(
+                    child: const Text(
+                      "Lihat histori BMI Saya",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.blue),
+                    ),
+                    onPressed: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const BMIPage()),
+                      );
+                    }),
               ],
             ),
           ),

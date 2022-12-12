@@ -96,6 +96,9 @@ class _LoginPageState extends State<LoginPage> {
                   // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
+                    obscureText: true,
+                    enableSuggestions: false,
+                    autocorrect: false,
                     decoration: InputDecoration(
                       hintText: "Isi password Anda.",
                       labelText: "Password",

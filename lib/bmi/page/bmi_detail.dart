@@ -7,6 +7,7 @@ import 'package:healthbud/authentication/page/LoginPage.dart';
 import 'package:healthbud/bmi/page/bmi_calculator_page.dart';
 
 import 'package:healthbud/bmi/model/bmi.dart';
+import 'package:healthbud/core/tools/loggedInUser.dart';
 
 import 'package:healthbud/main.dart';
 
@@ -34,7 +35,7 @@ class BMIDetail extends StatelessWidget {
           children: [
             Center(
                 child: Text(
-              "User : ${bmi_obj.user}",
+              "User : ${loggedInUser!.username}",
               style: const TextStyle(
                 fontSize: 30.0,
                 fontWeight: FontWeight.bold,
@@ -64,7 +65,7 @@ class BMIDetail extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 10),
+             const SizedBox(height: 30),
             Text(
               "Disubmit tanggal : " + bmi_obj.date_created,
               style: const TextStyle(
@@ -72,7 +73,7 @@ class BMIDetail extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 10),
+             const SizedBox(height: 30),
             Text(
               "Status: " + bmi_obj.bmi_result.toString(),
               style: const TextStyle(
@@ -80,23 +81,23 @@ class BMIDetail extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 10),
+             const SizedBox(height: 30),
             Text(
-              "Deskripsi: \n" + bmi_obj.deskripsi_hasil,
+              "Deskripsi: " + bmi_obj.deskripsi_hasil,
               style: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(height: 10),
+             const SizedBox(height: 30),
             Text(
-              "keterangan_tambahan: \n" + bmi_obj.keterangan_tambahan,
+              "keterangan_tambahan: " + bmi_obj.keterangan_tambahan,
               style: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 50),
             ListTile(
                 title: const Text('Hapus histori ini'),
                 onTap: () async {

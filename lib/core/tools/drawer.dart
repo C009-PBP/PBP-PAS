@@ -96,7 +96,7 @@ class _DrawerClassState extends State<DrawerClass> {
                 if (loggedInUser!.role == 'pasien') {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => const BMIPage()),
+                    MaterialPageRoute(builder: (context) => const BMI_Center()),
                   );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -113,28 +113,6 @@ class _DrawerClassState extends State<DrawerClass> {
             },
           ),
 
-          ListTile(
-            title: const Text('Kalkulator BMI Test'),
-            onTap: () {
-              // Route menu ke halaman form
-              if (loggedInUser != null) {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const BMI_Center()),
-                );
-              } else {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const BMIPage()),
-                );
-              }
-
-              // Navigator.pushReplacement(
-              //   context,
-              //   MaterialPageRoute(builder: (context) => BMI_Center()),
-              // );
-            },
-          ),
           ListTile(
             title: const Text('Pengaturan Akun'),
             onTap: () {
