@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:healthbud/bmi/page/bmi_calculator_page.dart';
-import 'package:healthbud/firebase_options.dart';
+// import 'package:healthbud/firebase_options.dart';
 
 import 'package:provider/provider.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
