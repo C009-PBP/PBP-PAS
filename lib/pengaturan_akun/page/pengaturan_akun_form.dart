@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:healthbud/core/tools/drawer.dart';
 import 'package:healthbud/pengaturan_akun/page/pengaturan_akun_page.dart';
-import 'package:healthbud/pengaturan_akun/model/akun.dart';
+import 'package:healthbud/core/tools/loggedInUser.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 class ProfileFormPage extends StatefulWidget {
   const ProfileFormPage({super.key});
@@ -26,13 +28,31 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
     'Kalimantan Utara','Sulawesi Barat','Sulawesi Selatan','Sulawesi Tenggara','Sulawesi Tengah','Gorontalo','Sulawesi Utara','Maluku Utara','Maluku','Papua Barat','Papua',
     'Papua Tengah','Papua Pegunungan','Papua Selatan'];
 
+  final userPk = loggedInUser!.pk;
+  void submit(request, firstname, lastname, phone, email, dob, address, city, province, gender) async {
+    await request.post(
+        'https://health-bud.up.railway.app/pengaturan_akun/update-flutter/$userPk',
+        {
+          'first_name': firstname,
+          'last_name': lastname,
+          'email': email,
+          'phone_no': phone,
+          'birth_date': dob.toString(),
+          "gender": gender,
+          "street": address,
+          "city": city,
+          "province": province,
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Form Pengaturan Akun'),
       ),
-      drawer: DrawerClass(parentScreen: ScreenName.pengaturanAkun),
+      drawer: const DrawerClass(parentScreen: ScreenName.pengaturanAkun),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -267,6 +287,28 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
                           ),
                         ],
                       ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: const Color(0xff4A60E9),
+                          ),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              submit(request, _firstname, _lastname, _phone, _email, _dob, _address, _city, _province, _gender);
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const PengaturanAkunPage()),
+                              );
+                            }
+                          },
+                          child: const Text(
+                            "Simpan",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      )
                     ]
                 )
             )

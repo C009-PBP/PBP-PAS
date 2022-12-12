@@ -17,7 +17,7 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
         appBar: AppBar(
           title: const Text('Riwayat Kesehatan'),
         ),
-        drawer: DrawerClass(parentScreen: ScreenName.riwayatKesehatan),
+        drawer: const DrawerClass(parentScreen: ScreenName.riwayatKesehatan),
         body: FutureBuilder(
             future: fetchProfile(),
             builder: (context, AsyncSnapshot snapshot) {
@@ -28,15 +28,14 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                       children: [
                         Container(
                           margin: const EdgeInsets.fromLTRB(0 , 20, 20, 10),
+                          padding: const EdgeInsets.all(8),
                           height: 40,
-                          width: 200,
+                          width: 220,
                           color: const Color(0xff4A60E9),
-                          child: const Center(
-                            child: Text(
-                                'Informasi Pasien',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
-                            ),
+                          child: const Text(
+                              'Informasi Pasien',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
                           ),
                         ),
                         Padding(
@@ -47,7 +46,7 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                                   'Nama Lengkap: ',
                                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                               Text(
-                                  'Belum diisi',
+                                  'Belum Diisi',
                                   style: TextStyle(fontSize: 16)
                               ),
                             ],
@@ -61,7 +60,7 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                                   'No. Telepon: ',
                                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                               Text(
-                                  'Belum diisi',
+                                  'Belum Diisi',
                                   style: TextStyle(fontSize: 16)
                               ),
                             ],
@@ -75,7 +74,7 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                                   'Alamat: ',
                                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                               Text(
-                                  'Belum diisi',
+                                  'Belum Diisi',
                                   style: TextStyle(fontSize: 16)
                               ),
                             ],
@@ -89,7 +88,7 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                                   'Umur: ',
                                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                               Text(
-                                  'Belum diisi',
+                                  'Belum Diisi',
                                   style: TextStyle(fontSize: 16)
                               ),
                             ],
@@ -103,7 +102,7 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                                   'Email: ',
                                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                               Text(
-                                  'Belum diisi',
+                                  'Belum Diisi',
                                   style: TextStyle(fontSize: 16)
                               ),
                             ],
@@ -117,7 +116,7 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                                   'Jenis Kelamin: ',
                                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                               Text(
-                                  'Belum diisi',
+                                  'Belum Diisi',
                                   style: TextStyle(fontSize: 16)
                               ),
                             ],
@@ -125,15 +124,14 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                         ),
                         Container(
                           margin: const EdgeInsets.fromLTRB(0 , 20, 20, 10),
+                          padding: const EdgeInsets.all(8),
                           height: 40,
-                          width: 200,
+                          width: 220,
                           color: const Color(0xff4A60E9),
-                          child: const Center(
-                            child: Text(
-                                'Kontak Darurat',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
-                            ),
+                          child: const Text(
+                              'Kontak Darurat',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
                           ),
                         ),
                         Padding(
@@ -144,7 +142,7 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                                   'Nama Lengkap: ',
                                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                               Text(
-                                  'Belum diisi',
+                                  'Belum Diisi',
                                   style: TextStyle(fontSize: 16)
                               ),
                             ],
@@ -158,7 +156,7 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                                   'Hubungan dengan Pasien: ',
                                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                               Text(
-                                  'Belum diisi',
+                                  'Belum Diisi',
                                   style: TextStyle(fontSize: 16)
                               ),
                             ],
@@ -172,7 +170,7 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                                   'Alamat: ',
                                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                               Text(
-                                  'Belum diisi',
+                                  'Belum Diisi',
                                   style: TextStyle(fontSize: 16)
                               ),
                             ],
@@ -186,7 +184,7 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                                   'No. Telepon: ',
                                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                               Text(
-                                  'Belum diisi',
+                                  'Belum Diisi',
                                   style: TextStyle(fontSize: 16)
                               ),
                             ],
@@ -194,15 +192,14 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                         ),
                         Container(
                           margin: const EdgeInsets.fromLTRB(0 , 20, 20, 10),
+                          padding: const EdgeInsets.all(8),
                           height: 40,
-                          width: 200,
+                          width: 220,
                           color: const Color(0xff4A60E9),
-                          child: const Center(
-                            child: Text(
-                                'Riwayat Kesehatan',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
-                            ),
+                          child: const Text(
+                              'Riwayat Kesehatan',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
                           ),
                         ),
                         Padding(
@@ -213,7 +210,7 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                                   'Golongan Darah: ',
                                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                               Text(
-                                  'Belum diisi',
+                                  'Belum Diisi',
                                   style: TextStyle(fontSize: 16)
                               ),
                             ],
@@ -227,7 +224,7 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                                   'Tekanan Darah: ',
                                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                               Text(
-                                  'Belum diisi',
+                                  'Belum Diisi',
                                   style: TextStyle(fontSize: 16)
                               ),
                             ],
@@ -241,7 +238,7 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                                   'Riwayat Penyakit: ',
                                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                               Text(
-                                  'Belum diisi',
+                                  'Belum Diisi',
                                   style: TextStyle(fontSize: 16)
                               ),
                             ],
@@ -255,7 +252,7 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                                   'Riwayat Alergi: ',
                                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                               Text(
-                                  'Belum diisi',
+                                  'Belum Diisi',
                                   style: TextStyle(fontSize: 16)
                               ),
                             ],
@@ -307,27 +304,26 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                         children: [
                           Container(
                             margin: const EdgeInsets.fromLTRB(0 , 20, 20, 10),
+                            padding: const EdgeInsets.all(8),
                             height: 40,
-                            width: 200,
+                            width: 220,
                             color: const Color(0xff4A60E9),
-                            child: const Center(
-                              child: Text(
-                                  'Informasi Pasien',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
-                              ),
+                            child: const Text(
+                                'Informasi Pasien',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
                             child: Row(
-                              children: const [
-                                Text(
+                              children: [
+                                const Text(
                                     'Nama Lengkap: ',
                                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                                 Text(
-                                    'Name',
-                                    style: TextStyle(fontSize: 16)
+                                    '${snapshot.data![0].fields.firstName} ${snapshot.data![0].fields.lastName}',
+                                    style: const TextStyle(fontSize: 16)
                                 ),
                               ],
                             ),
@@ -335,13 +331,13 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
                             child: Row(
-                              children: const [
-                                Text(
+                              children: [
+                                const Text(
                                     'No. Telepon: ',
                                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                                 Text(
-                                    '08123456789',
-                                    style: TextStyle(fontSize: 16)
+                                    '${snapshot.data![0].fields.phoneNo}',
+                                    style: const TextStyle(fontSize: 16)
                                 ),
                               ],
                             ),
@@ -349,13 +345,13 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
                             child: Row(
-                              children: const [
-                                Text(
+                              children: [
+                                const Text(
                                     'Alamat: ',
                                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                                 Text(
-                                    'Address',
-                                    style: TextStyle(fontSize: 16)
+                                    '${snapshot.data![0].fields.street}, ${snapshot.data![0].fields.city}, ${snapshot.data![0].fields.province}',
+                                    style: const TextStyle(fontSize: 16)
                                 ),
                               ],
                             ),
@@ -365,10 +361,10 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                             child: Row(
                               children: const [
                                 Text(
-                                    'Umur: ',
+                                    'Tanggal Lahir: ',
                                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                                 Text(
-                                    'Age',
+                                    'DOB',
                                     style: TextStyle(fontSize: 16)
                                 ),
                               ],
@@ -377,13 +373,13 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
                             child: Row(
-                              children: const [
-                                Text(
+                              children: [
+                                const Text(
                                     'Email: ',
                                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                                 Text(
-                                    'user@gmail.com',
-                                    style: TextStyle(fontSize: 16)
+                                    '${snapshot.data![0].fields.email}',
+                                    style: const TextStyle(fontSize: 16)
                                 ),
                               ],
                             ),
@@ -391,40 +387,39 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
                             child: Row(
-                              children: const [
-                                Text(
+                              children: [
+                                const Text(
                                     'Jenis Kelamin: ',
                                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                                 Text(
-                                    'Gender',
-                                    style: TextStyle(fontSize: 16)
+                                    '${snapshot.data![0].fields.gender}',
+                                    style: const TextStyle(fontSize: 16)
                                 ),
                               ],
                             ),
                           ),
                           Container(
                             margin: const EdgeInsets.fromLTRB(0 , 20, 20, 10),
+                            padding: const EdgeInsets.all(8),
                             height: 40,
-                            width: 200,
+                            width: 220,
                             color: const Color(0xff4A60E9),
-                            child: const Center(
-                              child: Text(
-                                  'Kontak Darurat',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
-                              ),
+                            child: const Text(
+                                'Kontak Darurat',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
                             child: Row(
-                              children: const [
-                                Text(
+                              children: [
+                                const Text(
                                     'Nama Lengkap: ',
                                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                                 Text(
-                                    'Name',
-                                    style: TextStyle(fontSize: 16)
+                                    '${snapshot.data![0].fields.emergencyFirstname} ${snapshot.data![0].fields.emergencyLastname}',
+                                    style: const TextStyle(fontSize: 16)
                                 ),
                               ],
                             ),
@@ -432,13 +427,13 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
                             child: Row(
-                              children: const [
-                                Text(
+                              children: [
+                                const Text(
                                     'Hubungan dengan Pasien: ',
                                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                                 Text(
-                                    'Relationship',
-                                    style: TextStyle(fontSize: 16)
+                                    '${snapshot.data![0].fields.emergencyRelationship}',
+                                    style: const TextStyle(fontSize: 16)
                                 ),
                               ],
                             ),
@@ -446,13 +441,13 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
                             child: Row(
-                              children: const [
-                                Text(
+                              children: [
+                                const Text(
                                     'Alamat: ',
                                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                                 Text(
-                                    'Address',
-                                    style: TextStyle(fontSize: 16)
+                                    '${snapshot.data![0].fields.emergencyStreet}, ${snapshot.data![0].fields.emergencyCity}, ${snapshot.data![0].fields.emergencyProvince}',
+                                    style: const TextStyle(fontSize: 16)
                                 ),
                               ],
                             ),
@@ -460,40 +455,39 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
                             child: Row(
-                              children: const [
-                                Text(
+                              children: [
+                                const Text(
                                     'No. Telepon: ',
                                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                                 Text(
-                                    '08123456789',
-                                    style: TextStyle(fontSize: 16)
+                                    '${snapshot.data![0].fields.emergencyPhoneNo}',
+                                    style: const TextStyle(fontSize: 16)
                                 ),
                               ],
                             ),
                           ),
                           Container(
                             margin: const EdgeInsets.fromLTRB(0 , 20, 20, 10),
+                            padding: const EdgeInsets.all(8),
                             height: 40,
-                            width: 200,
+                            width: 220,
                             color: const Color(0xff4A60E9),
-                            child: const Center(
-                              child: Text(
-                                  'Riwayat Kesehatan',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
-                              ),
+                            child: const Text(
+                                'Riwayat Kesehatan',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
                             child: Row(
-                              children: const [
-                                Text(
+                              children: [
+                                const Text(
                                     'Golongan Darah: ',
                                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                                 Text(
-                                    'Bloodtype',
-                                    style: TextStyle(fontSize: 16)
+                                    '${snapshot.data![0].fields.bloodtype}',
+                                    style: const TextStyle(fontSize: 16)
                                 ),
                               ],
                             ),
@@ -501,13 +495,13 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
                             child: Row(
-                              children: const [
-                                Text(
+                              children: [
+                                const Text(
                                     'Tekanan Darah: ',
                                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                                 Text(
-                                    'Blood Pressure',
-                                    style: TextStyle(fontSize: 16)
+                                    '${snapshot.data![0].fields.bloodpressure}',
+                                    style: const TextStyle(fontSize: 16)
                                 ),
                               ],
                             ),
@@ -515,13 +509,13 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
                             child: Row(
-                              children: const [
-                                Text(
+                              children: [
+                                const Text(
                                     'Riwayat Penyakit: ',
                                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                                 Text(
-                                    'Illnesses',
-                                    style: TextStyle(fontSize: 16)
+                                    '${snapshot.data![0].fields.illnesses}',
+                                    style: const TextStyle(fontSize: 16)
                                 ),
                               ],
                             ),
@@ -529,13 +523,13 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
                             child: Row(
-                              children: const [
-                                Text(
+                              children: [
+                                const Text(
                                     'Riwayat Alergi: ',
                                     style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                                 Text(
-                                    'Allergies',
-                                    style: TextStyle(fontSize: 16)
+                                    '${snapshot.data![0].fields.allergies}',
+                                    style: const TextStyle(fontSize: 16)
                                 ),
                               ],
                             ),
