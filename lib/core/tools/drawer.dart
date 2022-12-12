@@ -152,7 +152,7 @@ class _DrawerClassState extends State<DrawerClass> {
             title: const Text('Pengaturan Akun'),
             onTap: () {
               if (loggedInUser != null) {
-                if (loggedInUser!.role == 'pasien') {
+                if (loggedInUser!.role == 'pasien' || loggedInUser!.role == 'dokter') {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => const PengaturanAkunPage()),
@@ -160,13 +160,13 @@ class _DrawerClassState extends State<DrawerClass> {
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text(
-                        "Maaf, Anda harus terdaftar sebagai pasien untuk mengakses aplikasi ini."),
+                        "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
                   ));
                 }
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text(
-                      "Maaf, Anda harus terdaftar sebagai pasien untuk mengakses aplikasi ini."),
+                      "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
                 ));
               }
             },
