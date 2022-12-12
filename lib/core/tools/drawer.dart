@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:healthbud/authentication/page/LoginPage.dart';
 import 'package:healthbud/bmi/page/bmi_calculator_page.dart';
 import 'package:healthbud/bmi/page/bmi_calculator_center.dart';
+import 'package:healthbud/forum/views/forum_page.dart';
 
 import 'package:healthbud/main.dart';
 
@@ -16,6 +17,7 @@ enum ScreenName {
   BMI,
   BMI_Detail,
   BMICalculatorPage,
+  ForumPage,
   pengaturanAkun,
   riwayatKesehatan,
 }
@@ -156,6 +158,16 @@ class _DrawerClassState extends State<DrawerClass> {
                       "Maaf, Anda harus terdaftar sebagai pasien untuk mengakses aplikasi ini."),
                 ));
               }
+            },
+          ),
+          ListTile(
+            title: const Text('Forum'),
+            onTap: () {
+              // Route menu ke halaman form
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ForumPage()),
+                );
             },
           ),
         ],

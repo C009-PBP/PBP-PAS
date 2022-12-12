@@ -9,6 +9,8 @@ import 'package:healthbud/core/tools/drawer.dart';
 
 import 'package:healthbud/authentication/model/user.dart';
 
+import 'forum/views/forum_page.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -34,6 +36,7 @@ class MyApp extends StatelessWidget {
           "/login": (BuildContext context) => const LoginPage(),
           "/BMIPage": (BuildContext context) => const BMIPage(),
           "/BMICenter": (BuildContext context) => const BMIPage(),
+          "/forum":(BuildContext context) => const ForumPage(),
         },
       ),
     );
