@@ -47,3 +47,8 @@ app.*.map.json
 /lib/firebase_options.dart
 /android/app/google-services.json
 /ios/runner/GoogleService-info.plist
+
+ # Remember to never publicly share your keystore.
+ # See https://flutter.dev/docs/deployment/android#reference-the-keystore-from-the-app
+ *.keystore
+ *.jks
