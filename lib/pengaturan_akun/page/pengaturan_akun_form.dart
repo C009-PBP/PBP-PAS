@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:healthbud/core/tools/drawer.dart';
 import 'package:healthbud/pengaturan_akun/page/pengaturan_akun_page.dart';
 import 'package:healthbud/core/tools/loggedInUser.dart';
-
-import '../../authentication/page/LoginPage.dart';
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'package:provider/provider.dart';
 
 class ProfileFormPage extends StatefulWidget {
   const ProfileFormPage({super.key});
@@ -47,6 +47,7 @@ class _ProfileFormPageState extends State<ProfileFormPage> {
 
   @override
   Widget build(BuildContext context) {
+    final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Form Pengaturan Akun'),

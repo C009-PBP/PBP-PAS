@@ -28,15 +28,14 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                       children: [
                         Container(
                           margin: const EdgeInsets.fromLTRB(0 , 20, 20, 10),
+                          padding: const EdgeInsets.all(8),
                           height: 40,
-                          width: 200,
+                          width: 220,
                           color: const Color(0xff4A60E9),
-                          child: const Center(
-                            child: Text(
-                                'Informasi Pasien',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
-                            ),
+                          child: const Text(
+                              'Informasi Pasien',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
                           ),
                         ),
                         Padding(
@@ -125,15 +124,14 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                         ),
                         Container(
                           margin: const EdgeInsets.fromLTRB(0 , 20, 20, 10),
+                          padding: const EdgeInsets.all(8),
                           height: 40,
-                          width: 200,
+                          width: 220,
                           color: const Color(0xff4A60E9),
-                          child: const Center(
-                            child: Text(
-                                'Kontak Darurat',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
-                            ),
+                          child: const Text(
+                              'Kontak Darurat',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
                           ),
                         ),
                         Padding(
@@ -194,15 +192,14 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                         ),
                         Container(
                           margin: const EdgeInsets.fromLTRB(0 , 20, 20, 10),
+                          padding: const EdgeInsets.all(8),
                           height: 40,
-                          width: 200,
+                          width: 220,
                           color: const Color(0xff4A60E9),
-                          child: const Center(
-                            child: Text(
-                                'Riwayat Kesehatan',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
-                            ),
+                          child: const Text(
+                              'Riwayat Kesehatan',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
                           ),
                         ),
                         Padding(
@@ -307,15 +304,14 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                         children: [
                           Container(
                             margin: const EdgeInsets.fromLTRB(0 , 20, 20, 10),
+                            padding: const EdgeInsets.all(8),
                             height: 40,
-                            width: 200,
+                            width: 220,
                             color: const Color(0xff4A60E9),
-                            child: const Center(
-                              child: Text(
-                                  'Informasi Pasien',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
-                              ),
+                            child: const Text(
+                                'Informasi Pasien',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
                             ),
                           ),
                           Padding(
@@ -404,15 +400,14 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                           ),
                           Container(
                             margin: const EdgeInsets.fromLTRB(0 , 20, 20, 10),
+                            padding: const EdgeInsets.all(8),
                             height: 40,
-                            width: 200,
+                            width: 220,
                             color: const Color(0xff4A60E9),
-                            child: const Center(
-                              child: Text(
-                                  'Kontak Darurat',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
-                              ),
+                            child: const Text(
+                                'Kontak Darurat',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
                             ),
                           ),
                           Padding(
@@ -473,15 +468,14 @@ class _RiwayatKesehatanPageState extends State<RiwayatKesehatanPage> {
                           ),
                           Container(
                             margin: const EdgeInsets.fromLTRB(0 , 20, 20, 10),
+                            padding: const EdgeInsets.all(8),
                             height: 40,
-                            width: 200,
+                            width: 220,
                             color: const Color(0xff4A60E9),
-                            child: const Center(
-                              child: Text(
-                                  'Riwayat Kesehatan',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
-                              ),
+                            child: const Text(
+                                'Riwayat Kesehatan',
+                                textAlign: TextAlign.left,
+                                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white)
                             ),
                           ),
                           Padding(
