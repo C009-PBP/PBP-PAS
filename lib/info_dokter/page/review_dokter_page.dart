@@ -12,6 +12,7 @@ class ReviewDokterPage extends StatefulWidget {
   final List<InfoDokter> infoDokter;
   @override
   State<ReviewDokterPage> createState() => _ReviewDokterPageState();
+  
 }
 
 class _ReviewDokterPageState extends State<ReviewDokterPage> {
