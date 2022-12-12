@@ -1,3 +1,8 @@
+# Health-Bud - Mobile
+
+https://build.appcenter.ms/v0.1/apps/fdb29762-96be-4063-a794-6a9de49dc67b/branches/main/badge
+[![AppCenter Build](https://build.appcenter.ms/v0.1/apps/fdb29762-96be-4063-a794-6a9de49dc67b/branches/main/badge)]
+
 ## Kelompok C09:
 * Ardhito Nurhadyansah - 2106750206
 * Aulia Fikri Al Khawariz - 2106701160
