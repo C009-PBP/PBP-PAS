@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:healthbud/core/tools/drawer.dart';
 import 'package:healthbud/forum/controllers/fetch.dart';
 import 'package:healthbud/forum/views/widgets/post_field.dart';
 import 'package:healthbud/forum/views/widgets/post_data.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../core/tools/drawer.dart';
-
 
 class ForumPage extends StatefulWidget {
   const ForumPage({super.key});
