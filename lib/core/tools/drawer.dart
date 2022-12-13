@@ -4,6 +4,8 @@ import 'package:healthbud/authentication/page/LoginPage.dart';
 import 'package:healthbud/bmi/page/bmi_calculator_page.dart';
 import 'package:healthbud/bmi/page/bmi_calculator_center.dart';
 import 'package:healthbud/homepage/page/homepage_form.dart';
+import 'package:healthbud/forum/views/forum_page.dart';
+
 
 import 'package:healthbud/main.dart';
 
@@ -152,6 +154,17 @@ class _DrawerClassState extends State<DrawerClass> {
                 MaterialPageRoute(builder: (context) => InfoDokterPage()),
               );
             },
+          ),
+
+          ListTile(
+            title: const Text('Forum'),
+              onTap: () {
+                // Route menu ke halaman form
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ForumPage()),
+                  );
+              },
           ),
         ],
       ),
