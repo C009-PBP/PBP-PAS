@@ -1,9 +1,9 @@
+import 'package:healthbud/core/tools/loggedInUser.dart';
+import 'package:healthbud/forum/models/post_model.dart';
 import 'package:http/http.dart' as http;
 
 import 'dart:convert';
 
-import '../../core/tools/loggedInUser.dart';
-import '../models/post_model.dart';
 
 Future<List<Fields>> fetchQuestion() async {
   //print("ok");
