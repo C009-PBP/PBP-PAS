@@ -51,6 +51,7 @@ class _BMI_CenterState extends State<BMI_Center> {
               children: [
                 Text("Selamat datang, ${loggedInUser!.username}. ayo cek BMI-mu!", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),),
                 Padding(
+                  
                   // Menggunakan padding sebesar 8 pixels
                   padding: const EdgeInsets.all(8.0),
                   child: TextFormField(
@@ -216,10 +217,10 @@ class _BMI_CenterState extends State<BMI_Center> {
                         //     data
                         //     );
 
-                        bmi_post_response = await request.post(
-                            'http://localhost:8000/bmi_calculator/add/${user_pk}',
-                            data
-                            );
+                        // bmi_post_response = await request.post(
+                        //     'http://localhost:8000/bmi_calculator/add/${user_pk}',
+                        //     data
+                        //     );
                         print("P");
                         var meter_tinggi = _tinggi / 100;
                         bmi_result = _berat / (meter_tinggi * meter_tinggi);
