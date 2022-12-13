@@ -6,7 +6,6 @@ import 'package:healthbud/bmi/page/bmi_calculator_center.dart';
 import 'package:healthbud/homepage/page/homepage_form.dart';
 import 'package:healthbud/forum/views/forum_page.dart';
 
-
 import 'package:healthbud/main.dart';
 
 import 'package:healthbud/core/tools/loggedInUser.dart';
@@ -95,7 +94,6 @@ class _DrawerClassState extends State<DrawerClass> {
                   },
                 ),
 
-
           ListTile(
             title: const Text('Kalkulator BMI'),
             onTap: () {
@@ -155,17 +153,41 @@ class _DrawerClassState extends State<DrawerClass> {
               );
             },
           ),
-
           ListTile(
             title: const Text('Forum'),
-              onTap: () {
-                // Route menu ke halaman form
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ForumPage()),
-                  );
-              },
+            onTap: () {
+              // Route menu ke halaman info dokter
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const ForumPage()),
+              );
+            },
           ),
+          // ListTile(
+          //   title: const Text('Forum'),
+          //   onTap: () {
+          //     if (loggedInUser != null) {
+          //       if (loggedInUser!.role == 'pasien' ||
+          //           loggedInUser!.role == 'dokter') {
+          //         // Route menu ke halaman form
+          //         Navigator.pushReplacement(
+          //           context,
+          //           MaterialPageRoute(builder: (context) => const ForumPage()),
+          //         );
+          //       } else {
+          //         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          //           content: Text(
+          //               "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
+          //         ));
+          //       }
+          //     } else {
+          //       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          //         content: Text(
+          //             "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
+          //       ));
+          //     }
+          //   },
+          // ),
         ],
       ),
     );

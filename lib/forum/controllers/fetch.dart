@@ -6,10 +6,11 @@ import 'dart:convert';
 
 
 Future<List<Fields>> fetchQuestion() async {
-  //print("ok");
-  final userPk = loggedInUser!.pk;
+  print("ok");
+  // final userPk = loggedInUser!.pk;
   //print(userPk);
-  var url = Uri.parse('https://health-bud.up.railway.app/tanya_dokter/json-all/$userPk');
+  var url = Uri.parse('https://health-bud.up.railway.app/tanya_dokter/json-all/');
+  print("oke");
   var response = await http.get(
     url,
     headers: {
