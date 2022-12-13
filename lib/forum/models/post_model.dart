@@ -4,83 +4,62 @@
 
 import 'dart:convert';
 
-List<Questions> questionsFromJson(String str) =>
-    List<Questions>.from(json.decode(str).map((x) => Questions.fromJson(x)));
+List<Questions> questionsFromJson(String str) => List<Questions>.from(json.decode(str).map((x) => Questions.fromJson(x)));
 
-String questionsToJson(List<Questions> data) =>
-    json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+String questionsToJson(List<Questions> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class Questions {
-  Questions({
-    required this.model,
-    required this.pk,
-    required this.fields,
-  });
+    Questions({
+        required this.model,
+        required this.pk,
+        required this.fields,
+    });
 
-  Model model;
-  int pk;
-  Fields fields;
+    String model;
+    int pk;
+    Fields fields;
 
-  factory Questions.fromJson(Map<String, dynamic> json) => Questions(
-        model: modelValues.map[json["model"]]!,
+    factory Questions.fromJson(Map<String, dynamic> json) => Questions(
+        model: json["model"],
         pk: json["pk"],
         fields: Fields.fromJson(json["fields"]),
-      );
+    );
 
-  Map<String, dynamic> toJson() => {
-        "model": modelValues.reverse[model],
+    Map<String, dynamic> toJson() => {
+        "model": model,
         "pk": pk,
         "fields": fields.toJson(),
-      };
+    };
 }
 
 class Fields {
-  Fields({
-    required this.user,
-    required this.title,
-    required this.detail,
-    required this.tags,
-    required this.addTime,
-  });
+    Fields({
+        required this.user,
+        required this.title,
+        required this.detail,
+        required this.tags,
+        required this.addTime,
+    });
 
-  int user;
-  String title;
-  String detail;
-  String tags;
-  DateTime addTime;
+    int user;
+    String title;
+    String detail;
+    String tags;
+    DateTime addTime;
 
-  factory Fields.fromJson(Map<String, dynamic> json) => Fields(
+    factory Fields.fromJson(Map<String, dynamic> json) => Fields(
         user: json["user"],
         title: json["title"],
         detail: json["detail"],
         tags: json["tags"],
-        addTime: DateTime.parse(json["addTime"]),
-      );
+        addTime: DateTime.parse(json["add_time"]),
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "user": user,
         "title": title,
         "detail": detail,
         "tags": tags,
         "add_time": addTime.toIso8601String(),
-      };
-}
-
-enum Model { TANYA_DOKTER_QUESTION }
-
-final modelValues =
-    EnumValues({"tanya_dokter.question": Model.TANYA_DOKTER_QUESTION});
-
-class EnumValues<T> {
-  late Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
-  }
+    };
 }
