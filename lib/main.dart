@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:healthbud/bmi/page/bmi_calculator_page.dart';
 import 'package:healthbud/bmi/page/bmi_calculator_center.dart';
 import 'package:healthbud/core/tools/loggedInUser.dart';
+import 'package:healthbud/forum/views/forum_page.dart';
 import 'package:healthbud/homepage/page/homepage_form.dart';
 import 'package:healthbud/homepage/page/homepage_page.dart';
 import 'package:healthbud/homepage/tools/fetcherHomepage.dart';
@@ -249,11 +250,26 @@ class _MyHomePageState extends State<MyHomePage> {
                         padding: const EdgeInsets.all(10.0),
                         child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const InfoDokterPage()),
-                              );
+                              if (loggedInUser != null) {
+                                if (loggedInUser!.role == 'pasien' ||
+                                    loggedInUser!.role == 'dokter') {
+                                  Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => const ForumPage()),
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                    content: Text(
+                                        "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
+                                  ));
+                                }
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                                  content: Text(
+                                      "Maaf, Anda harus terdaftar sebagai pasien atau dokter untuk mengakses aplikasi ini."),
+                                ));
+                              }
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(0xff4A60E9),
